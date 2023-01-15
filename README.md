@@ -1,29 +1,40 @@
-# secure-electron-template
-A current electron app template with the most popular frameworks, designed and built with security in mind. (If you are curious about what makes an electron app secure, please check out [this page](https://github.com/reZach/secure-electron-template/blob/master/docs/secureapps.md)).
+<div>
+  <p>
+    <h1 align="left">Electron Template
+    </h1>
+  </p>
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=reZach_secure-electron-template&metric=alert_status)](https://sonarcloud.io/dashboard?id=reZach_secure-electron-template)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=reZach_secure-electron-template&metric=security_rating)](https://sonarcloud.io/dashboard?id=reZach_secure-electron-template)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=reZach_secure-electron-template&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=reZach_secure-electron-template)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=reZach_secure-electron-template&metric=bugs)](https://sonarcloud.io/dashboard?id=reZach_secure-electron-template)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=reZach_secure-electron-template&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=reZach_secure-electron-template)
+A current electron app template with the most popular frameworks, designed and built with security in mind. (If you are curious about what makes an electron app secure, please check out [this page](https://github.com/victorsoares96/electron-template/blob/master/docs/secureapps.md)).
+
+---
+
+  <p>
+    <h4>
+      Based on <a href="https://github.com/reZach/secure-electron-template">reZach - Secure Electron Template</a>
+    </h4>
+  </p>
+
+---
+
+</div>
 
 ## How to get started
-To get started, clone the repository by clicking the [![Use this template](https://github.com/reZach/secure-electron-template/blob/master/docs/imgs/usethistemplate.png "Use this template")](https://github.com/reZach/secure-electron-template/generate) button, or through the command line (`git clone https://github.com/reZach/secure-electron-template.git`). 
+To get started, clone the repository by clicking the [![Use this template](https://github.com/victorsoares96/electron-template/blob/master/docs/imgs/usethistemplate.png "Use this template")](https://github.com/victorsoares96/electron-template/generate) button, or through the command line (`git clone https://github.com/victorsoares96/electron-template.git`). 
 
 Once cloned, install the dependencies for the repo by running the following commands (you do _not_ have to run the first command if your command line is already inside the newly cloned repository):
 
 ```
-cd secure-electron-template
+cd electron-template
 npm i
 npm run dev
 ```
 
 > Are you using `yarn`? You'll want to [read this issue](https://github.com/reZach/secure-electron-template/issues/62).
 
-When you'd like to test your app in production, or package it for distribution, please navigate to [this page](https://github.com/reZach/secure-electron-template/blob/master/docs/scripts.md) for more details on how to do this.
+When you'd like to test your app in production, or package it for distribution, please navigate to [this page](https://github.com/victorsoares96/electron-template/blob/master/docs/scripts.md) for more details on how to do this.
 
 ## Demo
-![Demo](https://github.com/reZach/secure-electron-template/blob/master/docs/imgs/intro.gif "Demo")
+![Demo](https://github.com/victorsoares96/electron-template/blob/master/docs/imgs/intro.gif "Demo")
 
 ## Features
 Taken from the [best-practices](https://electronjs.org/docs/tutorial/security) official page, here is what this repository offers!
@@ -68,11 +79,11 @@ What would a template be without some helpful additions?
 - [License key validation](https://github.com/reZach/secure-electron-license-keys) (for validating a user has the proper license to use your app) **new!**
 
 ## Architecture
-For a more detailed view of the architecture of the template, please check out [here](https://github.com/reZach/secure-electron-template/blob/master/docs/architecture.md). I would _highly_ recommend reading this document to get yourself familiarized with this template.
+For a more detailed view of the architecture of the template, please check out [here](https://github.com/victorsoares96/electron-template/blob/master/docs/architecture.md). I would _highly_ recommend reading this document to get yourself familiarized with this template.
 
 ## FAQ
-Please see [our faq](https://github.com/reZach/secure-electron-template/blob/master/docs/faq.md) for any common questions you might have.
-**NEW TO ELECTRON?** Please visit [this page](https://github.com/reZach/secure-electron-template/blob/master/docs/newtoelectron.md).
+Please see [our faq](https://github.com/victorsoares96/electron-template/blob/master/docs/faq.md) for any common questions you might have.
+**NEW TO ELECTRON?** Please visit [this page](https://github.com/victorsoares96/electron-template/blob/master/docs/newtoelectron.md).
 
 ## Show us your apps!
-If you've built any applications with our template, we'd [love to see them!](https://github.com/reZach/secure-electron-template/blob/master/docs/yourapps.md).
+If you've built any applications with our template, we'd [love to see them!](https://github.com/victorsoares96/electron-template/blob/master/docs/yourapps.md).
