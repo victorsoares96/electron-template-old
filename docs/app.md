@@ -21,4 +21,4 @@ A folder that will holds localized files of translations for your app. This setu
 > Note, there are two config files in this template. **i18n.config.js** is for the renderer process (ie. front-end) and **i18n.mainconfig.js** is used for the menu items. It is important that these two config files _match_ (logically speaking, not word-for-word) so that the translation files work between menu items and the renderer process.
 
 #### src
-Application-specific files, these are your js/css files and everything else you are used to. A more detailed look of this directory is [here](https://github.com/reZach/secure-electron-template/blob/master/docs/src.md).
+Application-specific files, these are your js/css files and everything else you are used to. A more detailed look of this directory is [here](https://github.com/victorsoares96/electron-template/blob/master/docs/src.md).

@@ -15,7 +15,7 @@ Electron provides these features through Node through [`require`](https://nodejs
 ## How do I import modules into my app?
 You _used_ to (and still can, but it's **not** recommended) use Node modules with the electron [`remote`](https://www.electronjs.org/docs/api/remote) api, but [it's not very secure](https://github.com/electron/electron/issues/9920#issuecomment-575839738). Beginning with [electron v5](https://www.electronjs.org/docs/breaking-changes#planned-breaking-api-changes-50) (which was released in April 24, 2019), the team recommended to use a different architecture to make use of these Node modules. This is IPC, inter-process communication.
 
-![ipc](https://github.com/reZach/secure-electron-template/blob/master/docs/imgs/ipc.png "How IPC works")
+![ipc](https://github.com/victorsoares96/electron-template/blob/master/docs/imgs/ipc.png "How IPC works")
 
 ## How does IPC work
 IPC in itself doesn't _do_ anything, it simply allows you to send messages between the main and renderer processes. The idea behind IPC is that your **main** process controls and loads Node apis, while your **renderer** process tells the main process whenever it needs to use something that calls a Node api.
