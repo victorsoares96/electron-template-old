@@ -1,10 +1,10 @@
 {
-  "name": "secure-electron-template",
+  "name": "electron-template",
   "version": "0.0.1",
   "templateVersion": "0.1.0",
   "description": "The best way to build Electron apps with security in mind.",
   "private": true,
-  "main": "app/electron/main.js",
+  "main": "webpack.config.js",
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
     "audit-app": "npx electronegativity -i ./ -x LimitNavigationGlobalCheck,PermissionRequestHandlerGlobalCheck",
@@ -78,6 +78,14 @@
   "browserslist": [
     "last 2 Chrome versions"
   ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/commitizen-emoji"
+    },
+    "commitizenEmoji": {
+      "conventionalFormat": true
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.18.9",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
@@ -89,10 +97,14 @@
     "@google-cloud/translate": "^7.0.0",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
     "babel-loader": "^8.2.5",
     "babel-plugin-module-resolver": "^4.1.0",
     "buffer": "^6.0.3",
     "clean-webpack-plugin": "^4.0.0",
+    "commitizen": "4.2.6",
+    "commitizen-emoji": "1.0.5",
     "concurrently": "^7.3.0",
     "cross-env": "^7.0.3",
     "crypto-browserify": "^3.12.0",
@@ -102,11 +114,21 @@
     "electron": "^19.0.10",
     "electron-builder": "^23.1.0",
     "electron-debug": "^3.2.0",
+    "eslint": "^8.32.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-plugin-import": "^2.27.4",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.32.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "html-loader": "^4.1.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "8.0.3",
+    "lint-staged": "13.1.0",
     "mini-css-extract-plugin": "^2.6.1",
     "mocha": "^10.0.0",
     "path-browserify": "^1.0.1",
+    "prettier": "2.8.2",
     "spectron": "^19.0.0",
     "stream-browserify": "^3.0.0",
     "typescript": "4.7.4",

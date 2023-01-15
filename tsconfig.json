@@ -1,30 +1,31 @@
 {
-    "compilerOptions": {
-        "target": "ESNext",
-        "module": "umd",
-        "lib": [
-            "ES2015",
-            "ES2016",
-            "ES2017",
-            "ES2018",
-            "ES2019",
-            "ES2020",
-            "ESNext",
-            "dom"
-        ],
-        "jsx": "react",
-        "noEmit": true,
-        "sourceMap": true,
-        /* Strict Type-Checking Options */
-        "strict": true,
-        "noImplicitAny": true,
-        "strictNullChecks": true,
-        /* Module Resolution Options */
-        "moduleResolution": "node",
-        "forceConsistentCasingInFileNames": true,
-        "esModuleInterop": true
-    },
-    "include": [
-        "app/src"
-    ]
+  "extends": "./tsconfig.paths.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "umd",
+    "lib": [
+      "ES2015",
+      "ES2016",
+      "ES2017",
+      "ES2018",
+      "ES2019",
+      "ES2020",
+      "ESNext",
+      "dom"
+    ],
+    "jsx": "react",
+    "noEmit": true,
+    "sourceMap": true,
+    "allowJs": true,
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    /* Module Resolution Options */
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "typeRoots": ["node_modules/@types", "app/@types"],
+  },
+  "include": ["app/src", "app/electron", "app/localization", "app/@types"],
 }
