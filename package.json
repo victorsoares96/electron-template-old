@@ -68,12 +68,12 @@
     "i18n",
     "boilerplate"
   ],
-  "author": "reZach",
+  "author": "victorsoares96",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/reZach/secure-electron-template/issues"
+    "url": "https://github.com/victorsoares96/electron-template/issues"
   },
-  "homepage": "https://github.com/reZach/secure-electron-template#readme",
+  "homepage": "https://github.com/victorsoares96/electron-template#readme",
   "browserslist": [
     "last 2 Chrome versions"
   ],
