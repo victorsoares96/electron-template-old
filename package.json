@@ -121,7 +121,7 @@
     "bulma": "^0.9.4",
     "easy-redux-undo": "^1.0.5",
     "electron-devtools-installer": "^3.2.0",
-    "i18next": "^21.8.14",
+    "i18next": "^22.0.0",
     "i18next-electron-fs-backend": "^3.0.0",
     "i18next-fs-backend": "^1.1.4",
     "lodash": "4.17.21",
