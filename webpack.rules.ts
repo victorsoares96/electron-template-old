@@ -1,4 +1,5 @@
 import type { ModuleOptions } from 'webpack';
+import path from 'path';
 
 export const rules: Required<ModuleOptions>['rules'] = [
   // Add support for native node modules
@@ -20,6 +21,7 @@ export const rules: Required<ModuleOptions>['rules'] = [
   },
   {
     test: /\.tsx?$/,
+    include: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'electron')],
     exclude: /(node_modules|\.webpack)/,
     use: {
       loader: 'ts-loader',
