@@ -1,8 +1,8 @@
 {
   "name": "electron-template",
   "productName": "electron-template",
-  "version": "0.0.2",
-  "templateVersion": "0.2.0",
+  "version": "0.0.1",
+  "templateVersion": "0.3.0",
   "description": "A electron application template",
   "main": ".webpack/main",
   "scripts": {
