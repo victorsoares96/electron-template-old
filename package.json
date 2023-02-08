@@ -6,7 +6,7 @@
   "description": "A electron application template",
   "main": ".webpack/main",
   "scripts": {
-    "start": "electron-forge start",
+    "start": "NODE_ENV=development electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
@@ -26,6 +26,7 @@
     "@electron-forge/maker-zip": "6.0.4",
     "@electron-forge/plugin-webpack": "6.0.4",
     "@svgr/webpack": "^6.5.1",
+    "@types/csp-html-webpack-plugin": "^3.0.2",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@typescript-eslint/eslint-plugin": "5.0.0",
@@ -44,7 +45,9 @@
     "url-loader": "^4.1.1"
   },
   "dependencies": {
+    "csp-html-webpack-plugin": "^5.1.0",
     "electron-squirrel-startup": "1.0.0",
+    "html-webpack-plugin": "^5.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

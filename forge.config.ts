@@ -14,7 +14,16 @@ const config: ForgeConfig = {
   makers: [new MakerSquirrel({}), new MakerZIP({}, ['darwin']), new MakerRpm({}), new MakerDeb({})],
   plugins: [
     new WebpackPlugin({
+      devContentSecurityPolicy: `default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;`,
       mainConfig,
+      devServer: {
+        host: 'localhost',
+        hot: true,
+        compress: true,
+      },
+      packageSourceMaps: true,
+      port: 40992,
+      loggerPort: 40993,
       renderer: {
         config: rendererConfig,
         entryPoints: [
@@ -22,6 +31,7 @@ const config: ForgeConfig = {
             html: './app/src/index.html',
             js: './app/electron/renderer.ts',
             name: 'main_window',
+            nodeIntegration: false,
             preload: {
               js: './app/electron/preload.ts',
             },
