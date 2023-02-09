@@ -1,3 +1,5 @@
+import path from 'path';
+import fs from 'fs';
 import type { ForgeConfig } from '@electron-forge/shared-types';
 import { MakerSquirrel } from '@electron-forge/maker-squirrel';
 import { MakerZIP } from '@electron-forge/maker-zip';
@@ -10,6 +12,26 @@ import { rendererConfig } from './webpack.renderer.config';
 
 const config: ForgeConfig = {
   packagerConfig: {},
+  hooks: {
+    postPackage: async (_, { outputPaths }) => {
+      const rendererPath = path.resolve(__dirname, '.webpack/renderer');
+      const tempPath = path.resolve(rendererPath, 'temp');
+      const main_windowPath = path.resolve(rendererPath, 'main_window');
+
+      await fs.promises.unlink(path.resolve(main_windowPath, 'index.html'));
+      await fs.promises.rename(path.resolve(tempPath, 'index.html'), path.resolve(main_windowPath, 'index.html'));
+      await fs.promises.rmdir(tempPath);
+      await fs.promises.rm(path.resolve(main_windowPath, 'temp'), { force: true, recursive: true });
+
+      for (const outputPath of outputPaths) {
+        await fs.promises.rm(path.resolve(outputPath, 'resources/app/.webpack/renderer'), { force: true, recursive: true });
+        await fs.promises.cp(main_windowPath, path.resolve(outputPath, 'resources/app/.webpack/renderer/main_window'), {
+          force: true,
+          recursive: true
+        });
+      }
+    },
+  },
   rebuildConfig: {},
   makers: [new MakerSquirrel({}), new MakerZIP({}, ['darwin']), new MakerRpm({}), new MakerDeb({})],
   plugins: [
