@@ -1,4 +1,5 @@
 import { app, BrowserWindow, protocol, session } from 'electron';
+// import installExtension, { REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 
 import { Utils } from './utils';
 
@@ -42,6 +43,7 @@ const createWindow = (): void => {
       sandbox: true,
       webSecurity: true,
       webviewTag: false,
+      /* eng-disable PRELOAD_JS_CHECK */
       disableBlinkFeatures: 'Auxclick',
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
@@ -57,6 +59,30 @@ const createWindow = (): void => {
   mainWindow.webContents.on("did-finish-load", () => {
     mainWindow.setTitle(`Getting started with electron-template (v${app.getVersion()})`);
   });
+
+  // Only do these things when in development
+  if (isDev) {
+    // Errors are thrown if the dev tools are opened
+    // before the DOM is ready
+    mainWindow.webContents.once("dom-ready", async () => {
+      /**
+       * ! Disabled
+       * https://github.com/electron/electron/issues/32133
+       * https://github.com/electron/electron/issues/36545
+       */
+      /*await installExtension([
+        REDUX_DEVTOOLS,
+        REACT_DEVELOPER_TOOLS
+      ], { loadExtensionOptions: { allowFileAccess: true } })
+        .then((name) => console.log(`Added Extension: ${name}`))
+        .catch((err) => console.log("An error occurred: ", err))
+        .finally(() => {
+          // eslint-disable-next-line @typescript-eslint/no-var-requires
+          require("electron-debug")(); // https://github.com/sindresorhus/electron-debug
+          mainWindow.webContents.openDevTools();
+        });*/
+    });
+  }
 
   // Emitted when the window is closed.
   mainWindow.on("closed", () => {
