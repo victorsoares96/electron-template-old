@@ -1,6 +1,6 @@
 /* eslint-disable import/no-named-as-default-member */
 import i18next from 'i18next';
-import reactI18Next from 'react-i18next';
+import { initReactI18next } from 'react-i18next';
 import i18nBackend from 'i18next-electron-fs-backend';
 
 import whitelist from './whitelist';
@@ -14,7 +14,7 @@ const prependPath = isMac && !isDev ? window.api.i18nextElectronBackend.clientOp
 
 i18next
   .use(i18nBackend)
-  .use(reactI18Next.initReactI18next)
+  .use(initReactI18next)
   .init({
     backend: {
       loadPath: prependPath + "/app/localization/locales/{{lng}}/{{ns}}.json",

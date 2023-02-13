@@ -19,12 +19,6 @@ export const mainConfig: Configuration = {
       '@src': path.resolve(__dirname, 'app/src/'),
       '@localization': path.resolve(__dirname, 'app/localization/')
     },
-    fallback: {
-      "crypto": require.resolve("crypto-browserify"),
-      "buffer": require.resolve("buffer/"),
-      "path": require.resolve("path-browserify"),
-      "stream": require.resolve("stream-browserify")
-    },
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json'],
   },
 };

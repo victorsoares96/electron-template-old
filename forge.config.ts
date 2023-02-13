@@ -48,12 +48,13 @@ const config: ForgeConfig = {
       loggerPort: 40993,
       renderer: {
         config: rendererConfig,
+        // nodeIntegration: false,
         entryPoints: [
           {
             html: './app/src/index.html',
             js: './app/electron/renderer.ts',
             name: 'main_window',
-            nodeIntegration: false,
+            // nodeIntegration: false,
             preload: {
               js: './app/electron/preload.ts',
             },

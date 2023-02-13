@@ -57,13 +57,13 @@ const createWindow = (): void => {
     title: "Application is currently initializing...",
     webPreferences: {
       devTools: isDev,
-      allowRunningInsecureContent: false,
+      // allowRunningInsecureContent: false,
       nodeIntegration: false,
       nodeIntegrationInWorker: false,
       nodeIntegrationInSubFrames: false,
       contextIsolation: true,
       // safeDialogs: true,
-      // sandbox: true,
+      sandbox: false,
       // webSecurity: true,
       // webviewTag: false,
       /* eng-disable PRELOAD_JS_CHECK */
@@ -292,6 +292,8 @@ app.on("web-contents-created", (event, contents) => {
   contents.on("will-attach-webview", (contentsEvent, webPreferences, params) => {
     // Strip away preload scripts if unused or verify their location is legitimate
     delete webPreferences.preload;
+
+    webPreferences.additionalArguments = ['--woo=goo']
 
     // Disable Node.js integration
     webPreferences.nodeIntegration = false;
