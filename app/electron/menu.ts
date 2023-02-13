@@ -6,69 +6,53 @@ import whitelist from "../localization/whitelist";
 
 const isMac = process.platform === "darwin";
 
-const MenuBuilder = function(mainWindow: BrowserWindow, appName: string) {
+const MenuBuilder = function (mainWindow: BrowserWindow, appName: string) {
 
   // https://electronjs.org/docs/api/menu#main-process
-  const defaultTemplate = function(i18nextMainBackend: typeof i18next): (Electron.MenuItemConstructorOptions | Electron.MenuItem)[] {
+  const defaultTemplate = function (i18nextMainBackend: typeof i18next): (Electron.MenuItemConstructorOptions | Electron.MenuItem)[] {
     return [
-      ...(isMac ? [
-        {
-          label: appName,
-          submenu: [
-            {
-              role: "about",
-              label: i18nextMainBackend.t("About")
-            },
-            {
-              type: "separator"
-            },
-          ]
-        }
-      ] : [])
-    ];
-    /*return [
       // { role: "appMenu" }
       ...(isMac
         ? [
-            {
-              label: appName,
-              submenu: [
-                {
-                  role: "about",
-                  label: i18nextMainBackend.t("About")
-                },
-                {
-                  type: "separator"
-                },
-                {
-                  role: "services",
-                  label: i18nextMainBackend.t("Services")
-                },
-                {
-                  type: "separator"
-                },
-                {
-                  role: "hide",
-                  label: i18nextMainBackend.t("Hide")
-                },
-                {
-                  role: "hideothers",
-                  label: i18nextMainBackend.t("Hide Others")
-                },
-                {
-                  role: "unhide",
-                  label: i18nextMainBackend.t("Unhide")
-                },
-                {
-                  type: "separator"
-                },
-                {
-                  role: "quit",
-                  label: i18nextMainBackend.t("Quit")
-                }
-              ]
-            }
-          ]
+          {
+            label: appName,
+            submenu: [
+              {
+                role: "about",
+                label: i18nextMainBackend.t("About")
+              },
+              {
+                type: 'separator'
+              },
+              {
+                role: "services",
+                label: i18nextMainBackend.t("Services")
+              },
+              {
+                type: "separator"
+              },
+              {
+                role: "hide",
+                label: i18nextMainBackend.t("Hide")
+              },
+              {
+                role: "hideothers",
+                label: i18nextMainBackend.t("Hide Others")
+              },
+              {
+                role: "unhide",
+                label: i18nextMainBackend.t("Unhide")
+              },
+              {
+                type: "separator"
+              },
+              {
+                role: "quit",
+                label: i18nextMainBackend.t("Quit")
+              }
+            ]
+          }
+        ] as Electron.MenuItemConstructorOptions[]
         : []),
       // { role: "fileMenu" }
       {
@@ -76,13 +60,13 @@ const MenuBuilder = function(mainWindow: BrowserWindow, appName: string) {
         submenu: [
           isMac
             ? {
-                role: "close",
-                label: i18nextMainBackend.t("Quit")
-              }
+              role: "close",
+              label: i18nextMainBackend.t("Quit")
+            }
             : {
-                role: "quit",
-                label: i18nextMainBackend.t("Exit")
-              }
+              role: "quit",
+              label: i18nextMainBackend.t("Exit")
+            }
         ]
       },
       // { role: "editMenu" }
@@ -114,48 +98,48 @@ const MenuBuilder = function(mainWindow: BrowserWindow, appName: string) {
           },
           ...(isMac
             ? [
-                {
-                  role: "pasteAndMatchStyle",
-                  label: i18nextMainBackend.t("Paste and Match Style")
-                },
-                {
-                  role: "delete",
-                  label: i18nextMainBackend.t("Delete")
-                },
-                {
-                  role: "selectAll",
-                  label: i18nextMainBackend.t("Select All")
-                },
-                {
-                  type: "separator"
-                },
-                {
-                  label: i18nextMainBackend.t("Speech"),
-                  submenu: [
-                    {
-                      role: "startspeaking",
-                      label: i18nextMainBackend.t("Start Speaking")
-                    },
-                    {
-                      role: "stopspeaking",
-                      label: i18nextMainBackend.t("Stop Speaking")
-                    }
-                  ]
-                }
-              ]
+              {
+                role: "pasteAndMatchStyle",
+                label: i18nextMainBackend.t("Paste and Match Style")
+              },
+              {
+                role: "delete",
+                label: i18nextMainBackend.t("Delete")
+              },
+              {
+                role: "selectAll",
+                label: i18nextMainBackend.t("Select All")
+              },
+              {
+                type: "separator"
+              },
+              {
+                label: i18nextMainBackend.t("Speech"),
+                submenu: [
+                  {
+                    role: "startspeaking",
+                    label: i18nextMainBackend.t("Start Speaking")
+                  },
+                  {
+                    role: "stopspeaking",
+                    label: i18nextMainBackend.t("Stop Speaking")
+                  }
+                ]
+              }
+            ]
             : [
-                {
-                  role: "delete",
-                  label: i18nextMainBackend.t("Delete")
-                },
-                {
-                  type: "separator"
-                },
-                {
-                  role: "selectAll",
-                  label: i18nextMainBackend.t("Select All")
-                }
-              ])
+              {
+                role: "delete",
+                label: i18nextMainBackend.t("Delete")
+              },
+              {
+                type: "separator"
+              },
+              {
+                role: "selectAll",
+                label: i18nextMainBackend.t("Select All")
+              }
+            ]) as Electron.MenuItemConstructorOptions[]
         ]
       },
       // { role: "viewMenu" }
@@ -167,26 +151,26 @@ const MenuBuilder = function(mainWindow: BrowserWindow, appName: string) {
             label: i18nextMainBackend.t("Reload")
           },
           {
-            role: "forcereload",
+            role: 'forceReload',
             label: i18nextMainBackend.t("Force Reload")
           },
           {
-            role: "toggledevtools",
+            role: 'toggleDevTools',
             label: i18nextMainBackend.t("Toggle Developer Tools")
           },
           {
             type: "separator"
           },
           {
-            role: "resetzoom",
+            role: 'resetZoom',
             label: i18nextMainBackend.t("Reset Zoom")
           },
           {
-            role: "zoomin",
+            role: 'zoomIn',
             label: i18nextMainBackend.t("Zoom In")
           },
           {
-            role: "zoomout",
+            role: "zoomOut",
             label: i18nextMainBackend.t("Zoom Out")
           },
           {
@@ -201,7 +185,7 @@ const MenuBuilder = function(mainWindow: BrowserWindow, appName: string) {
       // language menu
       {
         label: i18nextMainBackend.t("Language"),
-        submenu: whitelist.buildSubmenu(i18nBackend.changeLanguageRequest, i18nextMainBackend)
+        // submenu: whitelist.buildSubmenu(i18nBackend.changeLanguageRequest, i18nextMainBackend)
       },
       // { role: "windowMenu" }
       {
@@ -217,27 +201,27 @@ const MenuBuilder = function(mainWindow: BrowserWindow, appName: string) {
           },
           ...(isMac
             ? [
-                {
-                  type: "separator"
-                },
-                {
-                  role: "front",
-                  label: i18nextMainBackend.t("Front")
-                },
-                {
-                  type: "separator"
-                },
-                {
-                  role: "window",
-                  label: i18nextMainBackend.t("Window")
-                }
-              ]
+              {
+                type: "separator"
+              },
+              {
+                role: "front",
+                label: i18nextMainBackend.t("Front")
+              },
+              {
+                type: "separator"
+              },
+              {
+                role: "window",
+                label: i18nextMainBackend.t("Window")
+              }
+            ]
             : [
-                {
-                  role: "close",
-                  label: i18nextMainBackend.t("Close")
-                }
-              ])
+              {
+                role: "close",
+                label: i18nextMainBackend.t("Close")
+              }
+            ]) as Electron.MenuItemConstructorOptions[]
         ]
       },
       {
@@ -254,11 +238,11 @@ const MenuBuilder = function(mainWindow: BrowserWindow, appName: string) {
           }
         ]
       }
-    ];*/
+    ];
   };
 
   return {
-    buildMenu: function(i18nextMainBackend: typeof i18next) {
+    buildMenu: function (i18nextMainBackend: typeof i18next) {
       const menu = Menu.buildFromTemplate(defaultTemplate(i18nextMainBackend));
       Menu.setApplicationMenu(menu);
 

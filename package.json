@@ -25,6 +25,7 @@
     "@electron-forge/maker-squirrel": "6.0.4",
     "@electron-forge/maker-zip": "6.0.4",
     "@electron-forge/plugin-webpack": "6.0.4",
+    "@google-cloud/translate": "^7.1.0",
     "@svgr/webpack": "^6.5.1",
     "@types/csp-html-webpack-plugin": "^3.0.2",
     "@types/react": "^18.0.27",
@@ -32,6 +33,8 @@
     "@typescript-eslint/eslint-plugin": "5.0.0",
     "@typescript-eslint/parser": "5.0.0",
     "@vercel/webpack-asset-relocator-loader": "1.7.3",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
     "css-loader": "6.0.0",
     "electron": "22.1.0",
     "electron-debug": "^3.2.0",
@@ -40,6 +43,8 @@
     "eslint-plugin-import": "2.25.0",
     "fork-ts-checker-webpack-plugin": "7.2.13",
     "node-loader": "2.0.0",
+    "path-browserify": "^1.0.1",
+    "stream-browserify": "^3.0.0",
     "style-loader": "3.0.0",
     "ts-loader": "9.2.2",
     "ts-node": "10.0.0",
@@ -54,6 +59,10 @@
     "i18next-electron-fs-backend": "^3.0.0",
     "i18next-fs-backend": "^2.1.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-i18next": "^12.1.5",
+    "secure-electron-context-menu": "^1.3.3",
+    "secure-electron-license-keys": "^1.1.3",
+    "secure-electron-store": "^4.0.2"
   }
 }

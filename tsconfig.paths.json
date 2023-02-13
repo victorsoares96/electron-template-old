@@ -4,7 +4,8 @@
     "paths": {
       "*": ["node_modules/*"],
       "@electron/*": ["app/electron/*"],
-      "@src/*": ["app/src/*"]
+      "@src/*": ["app/src/*"],
+      "@localization/*": ["app/localization/*"]
     }
   }
 }

@@ -56,7 +56,7 @@ const whitelistMap: { [key: string]: string } = {
 const Whitelist = (function() {
   const keys = Object.keys(whitelistMap);
   const clickFunction = function(channel: string, lng: string, i18nextMainBackend: typeof i18next) {
-    return function(_menuItem: string, browserWindow: BrowserWindow, _event: typeof i18next) {
+    return function(_menuItem: Electron.MenuItem, browserWindow: BrowserWindow, _event: Electron.KeyboardEvent) {
 
       // Solely within the top menu
       i18nextMainBackend.changeLanguage(lng);
@@ -70,8 +70,8 @@ const Whitelist = (function() {
 
   return {
     langs: keys,
-    buildSubmenu: function(channel: string, i18nextMainBackend: typeof i18next) {
-      const submenu = [];
+    buildSubmenu: function(channel: string, i18nextMainBackend: typeof i18next): Electron.MenuItemConstructorOptions[] {
+      const submenu: Electron.MenuItemConstructorOptions[] = [];
 
       for (const key of keys) {
         submenu.push({
