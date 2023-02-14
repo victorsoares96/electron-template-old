@@ -11,7 +11,6 @@ import {
 import {
   createReduxHistoryContext
 } from "redux-first-history";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import undoable from "easy-redux-undo";
 import homeReducer from "./home/home.slice";

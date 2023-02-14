@@ -11,10 +11,15 @@ import "./undoredo.css";
 function UndoRedo() {
   const dispatch = useAppDispatch();
 
+  // @ts-ignore
   const counter = useAppSelector(state => state.undoable.present.counter);
+  // @ts-ignore
   const complex = useAppSelector(state => state.undoable.present.complex);
+  // @ts-ignore
   const past = useAppSelector(state => state.undoable.past);
+  // @ts-ignore
   const present = useAppSelector(state => state.undoable.present);
+  // @ts-ignore
   const future = useAppSelector(state => state.undoable.future);
   return (
     <React.Fragment>

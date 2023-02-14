@@ -24,7 +24,7 @@ import Protocol from './protocol';
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 
 const port = 40992;
-const selfHost = `http://localhost:${port}/main_window`;
+const selfHost = `http://localhost:${port}`;
 const isDev = Utils.isDev();
 
 let menuBuilder: any;
@@ -56,7 +56,7 @@ const createWindow = (): void => {
     width: 800,
     title: "Application is currently initializing...",
     webPreferences: {
-      devTools: isDev,
+      // devTools: isDev,
       // allowRunningInsecureContent: false,
       nodeIntegration: false,
       nodeIntegrationInWorker: false,
@@ -106,7 +106,7 @@ const createWindow = (): void => {
 
   // and load the index.html of the app.
   if (isDev) {
-    mainWindow.loadURL(selfHost);
+    mainWindow.loadURL(`${selfHost}/main_window`);
   } else {
     mainWindow.loadURL(`${Protocol.scheme}://rse/index.html`);
   }
@@ -211,6 +211,7 @@ const createWindow = (): void => {
   // "initialized" event.
   i18nextMainBackend.on("languageChanged", (lng) => {    
     if (i18nextMainBackend.isInitialized){
+      console.log('Changed language to: ', lng);
       menuBuilder.buildMenu(i18nextMainBackend);
     }
   });

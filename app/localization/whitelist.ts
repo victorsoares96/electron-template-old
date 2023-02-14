@@ -70,7 +70,7 @@ const Whitelist = (function() {
 
   return {
     langs: keys,
-    buildSubmenu: function(channel: string, i18nextMainBackend: typeof i18next): Electron.MenuItemConstructorOptions[] {
+    buildSubmenu: function (channel: string, i18nextMainBackend: typeof i18next): Electron.MenuItemConstructorOptions[] {
       const submenu: Electron.MenuItemConstructorOptions[] = [];
 
       for (const key of keys) {

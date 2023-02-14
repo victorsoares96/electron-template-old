@@ -1,5 +1,4 @@
 import { Menu, BrowserWindow } from 'electron';
-import i18nBackend from 'i18next-electron-fs-backend';
 import i18next from 'i18next';
 
 import whitelist from "../localization/whitelist";
@@ -185,7 +184,11 @@ const MenuBuilder = function (mainWindow: BrowserWindow, appName: string) {
       // language menu
       {
         label: i18nextMainBackend.t("Language"),
-        // submenu: whitelist.buildSubmenu(i18nBackend.changeLanguageRequest, i18nextMainBackend)
+        submenu: whitelist.buildSubmenu(
+          // is the same i18nBackend.changeLanguageRequest
+          "ChangeLanguage-Request", 
+          i18nextMainBackend
+        )
       },
       // { role: "windowMenu" }
       {

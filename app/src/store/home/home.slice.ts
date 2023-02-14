@@ -1,22 +1,26 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+export type HomeState = {
+  message: string;
+}
+
+const initialState: HomeState = {
+  message:
+    typeof window.api.store.initial()["motd"] !== "undefined"
+      ? window.api.store.initial()["motd"]
+      : "Hello and welcome to the template!"
+};
 
 const homeSlice = createSlice({
   name: "home",
-  initialState: {
-    message:
-      typeof window.api.store.initial()["motd"] !== "undefined"
-        ? window.api.store.initial()["motd"]
-        : "Hello and welcome to the template!"
-  },
+  initialState,
   reducers: {
-    changeMessage(state, action) {
+    changeMessage: (state, action: PayloadAction<string>) => {
       state.message = action.payload;
     }
   }
 });
 
-// Export actions
 export const { changeMessage } = homeSlice.actions;
 
-// Export reducer
 export default homeSlice.reducer;

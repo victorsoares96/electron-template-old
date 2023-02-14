@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import SubItem from "@src/components/subitem/subitem";
 
 function ContextMenu() {
-  const [message, setMessage] = useState("");
-
   useEffect(() => {
     // Set up binding in code whenever the context menu item
     // of id "alert" is selected

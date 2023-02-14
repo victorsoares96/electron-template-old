@@ -9,7 +9,6 @@ import { store, history } from "./store";
 import Nav from '@src/core/Nav';
 import AppRoutes from '@src/core/Routes';
 import "bulma/css/bulma.css";
-import App from "./App";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
