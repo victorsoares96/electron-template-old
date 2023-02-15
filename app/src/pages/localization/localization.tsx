@@ -4,6 +4,7 @@ import "./localization.css";
 
 function Localization() {
   const { t } = useTranslation();
+  console.log({ t })
   return (
     <React.Fragment>
       <section className="section">

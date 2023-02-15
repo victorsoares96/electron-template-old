@@ -28,17 +28,17 @@ const complexSlice = createSlice({
   initialState,
   reducers: {
     add: (state) => {
-      state = [...state, {
+      state.push({
         id: state.length + 1,
         food: {
           name: randomFood(),
           taste: randomTaste()
         }
-      }];
+      })
     },
     remove: (state) => {
       const randIndex = Math.floor(Math.random() * state.length);
-      state = state.splice(randIndex, 1);
+      state.splice(randIndex, 1);
     }
   }
 });

@@ -25,7 +25,7 @@ const config: ForgeConfig = {
 
       for (const outputPath of outputPaths) {
         await fs.promises.rm(path.resolve(outputPath, 'resources/app/.webpack/renderer'), { force: true, recursive: true });
-        await fs.promises.cp(main_windowPath, path.resolve(outputPath, 'resources/app/.webpack/renderer/main_window'), {
+        await fs.promises.cp(rendererPath, path.resolve(outputPath, 'resources/app/.webpack/renderer'), {
           force: true,
           recursive: true
         });
