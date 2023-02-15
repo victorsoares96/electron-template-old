@@ -1,8 +1,6 @@
 // See the Electron documentation for details on how to use preload scripts:
 // https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
 
-console.log('ola')
-
 import { contextBridge, ipcRenderer } from "electron";
 import fs from "fs";
 import * as i18nextBackend from "i18next-electron-fs-backend";

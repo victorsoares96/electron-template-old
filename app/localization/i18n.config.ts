@@ -8,12 +8,10 @@ import whitelist from './whitelist';
 // On Mac, the folder for resources isn't
 // in the same directory as Linux/Windows;
 // https://www.electron.build/configuration/contents#extrafiles
-const isMac = window.api.i18nextElectronBackend.clientOptions.platform === "darwin";
 const isDev = window.api.i18nextElectronBackend.clientOptions.environment === "development";
-// const prependPath = isMac && !isDev ? window.api.i18nextElectronBackend.clientOptions.resourcesPath : ".";
-const localesPath = '/usr/lib/electron-template/resources/app' + '/localization/locales'
+const prependPath = isDev ? `./app` : `${window.api.i18nextElectronBackend.clientOptions.resourcesPath}/resources/app`
 
-console.log(window.api.i18nextElectronBackend.clientOptions)
+console.log(window.api.i18nextElectronBackend.clientOptions, prependPath)
 
 i18next
   .use(i18nBackend)
@@ -26,8 +24,8 @@ i18next
   .use(initReactI18next)
   .init({
     backend: {
-      loadPath: localesPath + "/{{lng}}/{{ns}}.json",
-      addPath: localesPath + "/{{lng}}/{{ns}}.missing.json",
+      loadPath: prependPath + "/localization/locales/{{lng}}/{{ns}}.json",
+      addPath: prependPath + "/localization/locales/{{lng}}/{{ns}}.missing.json",
       contextBridgeApiKey: "api" // needs to match first parameter of contextBridge.exposeInMainWorld in preload file; defaults to "api"
     },
     debug: true,
