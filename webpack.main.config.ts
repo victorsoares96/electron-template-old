@@ -16,7 +16,8 @@ export const mainConfig: Configuration = {
   resolve: {
     alias: {
       '@electron': path.resolve(__dirname, 'app/electron/'),
-      '@src': path.resolve(__dirname, 'app/src/')
+      '@src': path.resolve(__dirname, 'app/src/'),
+      '@localization': path.resolve(__dirname, 'app/localization/')
     },
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json'],
   },

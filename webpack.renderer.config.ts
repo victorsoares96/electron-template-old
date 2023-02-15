@@ -15,6 +15,15 @@ rules.push({
   use: ['@svgr/webpack', 'url-loader'],
 });
 
+rules.push({
+  test: /\.(png|jpe?g|gif)$/i,
+  use: [
+    {
+      loader: 'file-loader',
+    },
+  ],
+})
+
 if (process.env.NODE_ENV === 'development') {
   plugins.push(
     new HtmlWebpackPlugin({
@@ -67,7 +76,14 @@ export const rendererConfig: Configuration = {
   resolve: {
     alias: {
       '@electron': path.resolve(__dirname, 'app/electron/'),
-      '@src': path.resolve(__dirname, 'app/src/')
+      '@src': path.resolve(__dirname, 'app/src/'),
+      '@localization': path.resolve(__dirname, 'app/localization/'),
+    },
+    fallback: {
+      "crypto": require.resolve("crypto-browserify"),
+      "buffer": require.resolve("buffer/"),
+      "path": require.resolve("path-browserify"),
+      "stream": require.resolve("stream-browserify")
     },
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css'],
   },

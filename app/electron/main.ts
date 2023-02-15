@@ -1,6 +1,18 @@
-import { app, BrowserWindow, protocol, session } from 'electron';
+import fs from 'fs';
+import crypto from 'crypto';
+import { app, BrowserWindow, protocol, session, ipcMain, Menu } from 'electron';
 // import installExtension, { REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
+import * as i18nextBackend from "i18next-electron-fs-backend";
+import i18nextMainBackend from '@localization/i18n.main-config';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const SecureElectronLicenseKeys = require("secure-electron-license-keys");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const Store = require("secure-electron-store").default;
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const ContextMenu = require("secure-electron-context-menu").default;
+
+import MenuBuilder from "./menu";
 import { Utils } from './utils';
 
 import Protocol from './protocol';
@@ -12,20 +24,31 @@ import Protocol from './protocol';
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 
 const port = 40992;
-const selfHost = `http://localhost:${port}/main_window`;
+const selfHost = `http://localhost:${port}`;
 const isDev = Utils.isDev();
+
+let menuBuilder: any;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
+// Use saved config values for configuring your
+// BrowserWindow, for instance.
+// NOTE - this config is not passcode protected
+// and stores plaintext values
+//let savedConfig = store.mainInitialStore(fs);
 const createWindow = (): void => {
   if (!isDev) {
     // Needs to happen before creating/loading the browser window;
     // protocol is only used in prod
     protocol.registerBufferProtocol(Protocol.scheme, Protocol.requestHandler); /* eng-disable PROTOCOL_HANDLER_JS_CHECK */
   }
+
+  const store = new Store({
+    path: app.getPath("userData")
+  });
 
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -34,24 +57,56 @@ const createWindow = (): void => {
     title: "Application is currently initializing...",
     webPreferences: {
       devTools: isDev,
-      allowRunningInsecureContent: false,
+      // allowRunningInsecureContent: false,
       nodeIntegration: false,
       nodeIntegrationInWorker: false,
       nodeIntegrationInSubFrames: false,
       contextIsolation: true,
-      safeDialogs: true,
-      sandbox: true,
-      webSecurity: true,
-      webviewTag: false,
+      // safeDialogs: true,
+      sandbox: false,
+      // webSecurity: true,
+      // webviewTag: false,
       /* eng-disable PRELOAD_JS_CHECK */
       disableBlinkFeatures: 'Auxclick',
+      additionalArguments: [`--storePath=${store.sanitizePath(app.getPath("userData"))}`],
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
   });
 
+  // Sets up main.js bindings for our i18next backend
+  i18nextBackend.mainBindings(ipcMain, mainWindow, fs);
+
+  // Sets up main.js bindings for our electron store;
+  // callback is optional and allows you to use store in main process
+  const callback = function (success: boolean, initialStore: unknown) {
+    console.log(`${!success ? "Un-s" : "S"}uccessfully retrieved store in main process.`);
+    console.log(initialStore); // {"key1": "value1", ... }
+  };
+
+  store.mainBindings(ipcMain, mainWindow, fs, callback);
+
+  // Sets up bindings for our custom context menu
+  ContextMenu.mainBindings(ipcMain, mainWindow, Menu, isDev, {
+    "loudAlertTemplate": [{
+      id: "loudAlert",
+      label: "AN ALERT!"
+    }],
+    "softAlertTemplate": [{
+      id: "softAlert",
+      label: "Soft alert"
+    }]
+  });
+
+  // Setup bindings for offline license verification
+  SecureElectronLicenseKeys.mainBindings(ipcMain, mainWindow, fs, crypto, {
+    root: process.cwd(),
+    version: app.getVersion()
+  });
+
+
   // and load the index.html of the app.
   if (isDev) {
-    mainWindow.loadURL(selfHost);
+    mainWindow.loadURL(`${selfHost}/main_window`);
   } else {
     mainWindow.loadURL(`${Protocol.scheme}://rse/index.html`);
   }
@@ -139,6 +194,28 @@ const createWindow = (): void => {
   //   }
   // });
 
+  menuBuilder = MenuBuilder(mainWindow, app.name);
+
+  // Set up necessary bindings to update the menu items
+  // based on the current language selected
+  i18nextMainBackend.on("initialized", () => {            
+    i18nextMainBackend.changeLanguage("en");
+    i18nextMainBackend.off("initialized"); // Remove listener to this event as it's not needed anymore
+  });
+  
+  // When the i18n framework starts up, this event is called
+  // (presumably when the default language is initialized)
+  // BEFORE the "initialized" event is fired - this causes an 
+  // error in the logs. To prevent said error, we only call the
+  // below code until AFTER the i18n framework has finished its
+  // "initialized" event.
+  i18nextMainBackend.on("languageChanged", (lng) => {    
+    if (i18nextMainBackend.isInitialized){
+      console.log('Changed language to: ', lng);
+      menuBuilder.buildMenu(i18nextMainBackend);
+    }
+  });
+
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 };
@@ -166,6 +243,10 @@ app.on('ready', createWindow);
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
+  } else {
+    i18nextBackend.clearMainBindings(ipcMain);
+    ContextMenu.clearMainBindings(ipcMain);
+    SecureElectronLicenseKeys.clearMainBindings(ipcMain);
   }
 });
 

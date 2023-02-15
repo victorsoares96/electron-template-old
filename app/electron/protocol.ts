@@ -16,7 +16,7 @@ import fs from 'fs';
 import path from 'path';
 import electron from 'electron';
 
-const DIST_PATH = path.resolve(__dirname, '../renderer/main_window');
+const DIST_PATH = path.resolve(__dirname, '../renderer');
 const scheme = "app";
 
 const mimeTypes: { [key: string]: string } = {
@@ -48,14 +48,17 @@ function mime(filename: string) {
 function requestHandler(req: Electron.ProtocolRequest, next: (response: (Buffer) | (Electron.ProtocolResponse)) => void) {
   const reqUrl = new URL(req.url);
   let reqPath = path.normalize(reqUrl.pathname);
-  if (reqPath === "/") {
-    reqPath = "/index.html";
+
+  if (reqPath === "/index.html") {
+    reqPath = "/main_window/index.html";
   }
-  if (reqPath === "/main_window/index.js") {
-    reqPath = "/index.js"
-  }
+
   const reqFilename = path.basename(reqPath);
-  console.log({ reqUrl, reqPath, reqFilename })
+
+  if (reqPath.includes('/.webpack/renderer') && reqPath.includes(reqFilename)) {
+    reqPath = `/main_window/${reqFilename}`
+  }
+
   fs.readFile(path.join(DIST_PATH, reqPath), (err, data) => {
     const { mimeExt, mimeType } = mime(reqFilename);
     if (!err && mimeType !== null) {
@@ -65,8 +68,7 @@ function requestHandler(req: Electron.ProtocolRequest, next: (response: (Buffer)
         data
       });
     } else {
-      electron.clipboard.writeText(JSON.stringify(err));
-      console.error(err);
+      throw err;
     }
   });
 }
