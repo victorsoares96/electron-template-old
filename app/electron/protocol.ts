@@ -60,7 +60,7 @@ function requestHandler(req: Electron.ProtocolRequest, next: (response: (Buffer)
 
   const reqFilename = path.basename(reqPath);
 
-  if (reqPath.includes('app/.webpack/renderer') && reqPath.includes(reqFilename)) {
+  if (reqPath.includes('/.webpack/renderer') && reqPath.includes(reqFilename)) {
     // electron.clipboard.writeText(JSON.stringify({ reqPath, reqUrl, reqFilename, DIST_PATH, cwd: process.cwd(), dirname: __dirname, nextReqPath: path.join(DIST_PATH, `/main_window/${reqFilename}`) }));
     reqPath = `/main_window/${reqFilename}`
   }

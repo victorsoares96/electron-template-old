@@ -12,7 +12,7 @@ import whitelist from "./whitelist";
 // https://www.electron.build/configuration/contents#extrafiles
 const isDev = process.env.NODE_ENV === "development";
 
-const prependPath = isDev ? `${app.getAppPath()}/app` : `${process.resourcesPath}/app`
+const prependPath = isDev ? `${app.getAppPath()}/app` : `${process.resourcesPath}`
 
 i18next
   .use(backend)

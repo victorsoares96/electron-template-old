@@ -9,7 +9,7 @@ import whitelist from './whitelist';
 // in the same directory as Linux/Windows;
 // https://www.electron.build/configuration/contents#extrafiles
 const isDev = window.api.i18nextElectronBackend.clientOptions.environment === "development";
-const prependPath = isDev ? `./app` : `${window.api.i18nextElectronBackend.clientOptions.resourcesPath}/resources/app`
+const prependPath = isDev ? `./app` : `${window.api.i18nextElectronBackend.clientOptions.resourcesPath}/resources`
 
 console.log(window.api.i18nextElectronBackend.clientOptions, prependPath)
 
