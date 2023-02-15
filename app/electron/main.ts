@@ -294,8 +294,6 @@ app.on("web-contents-created", (event, contents) => {
     // Strip away preload scripts if unused or verify their location is legitimate
     delete webPreferences.preload;
 
-    webPreferences.additionalArguments = ['--woo=goo']
-
     // Disable Node.js integration
     webPreferences.nodeIntegration = false;
 
