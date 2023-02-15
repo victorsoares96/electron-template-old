@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
-import { app, BrowserWindow, protocol, session, ipcMain, Menu, clipboard } from 'electron';
+import { app, BrowserWindow, protocol, session, ipcMain, Menu } from 'electron';
 // import installExtension, { REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import * as i18nextBackend from "i18next-electron-fs-backend";
 import i18nextMainBackend from '@localization/i18n.main-config';
@@ -202,17 +202,6 @@ const createWindow = (): void => {
   i18nextMainBackend.on("initialized", () => {            
     i18nextMainBackend.changeLanguage("en");
     i18nextMainBackend.off("initialized"); // Remove listener to this event as it's not needed anymore
-    fs.writeFileSync(path.resolve(process.cwd(), `log_${Date.now()}.txt`), JSON.stringify('initialized'))
-  });
-
-  fs.writeFileSync(path.resolve(process.cwd(), `log_${Date.now()}.txt`), JSON.stringify({ i18nextMainBackend }))
-
-  i18nextMainBackend.on("failedLoading", (lng, ns, msg) => {            
-    fs.writeFileSync(path.resolve(process.cwd(), `log_${Date.now()}.txt`), JSON.stringify({ lng, ns, msg }))
-  });
-
-  i18nextMainBackend.on("missingKey", (lng, ns, msg) => {            
-    fs.writeFileSync(path.resolve(process.cwd(), `log_${Date.now()}.txt`), JSON.stringify({ lng, ns, msg }))
   });
   
   // When the i18n framework starts up, this event is called

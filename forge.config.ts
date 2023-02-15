@@ -11,12 +11,20 @@ import { mainConfig } from './webpack.main.config';
 import { rendererConfig } from './webpack.renderer.config';
 
 const config: ForgeConfig = {
-  packagerConfig: {},
+  packagerConfig: {
+    // asar: true,
+    /*beforeAsar: [
+      async () => {
+        //
+      },
+    ],*/
+  },
   hooks: {
     postPackage: async (_, { outputPaths }) => {
       const rendererPath = path.resolve(__dirname, '.webpack/renderer');
       const tempPath = path.resolve(rendererPath, 'temp');
       const main_windowPath = path.resolve(rendererPath, 'main_window');
+      const localesPath = path.resolve(__dirname, 'app/localization/locales');
 
       await fs.promises.unlink(path.resolve(main_windowPath, 'index.html'));
       await fs.promises.rename(path.resolve(tempPath, 'index.html'), path.resolve(main_windowPath, 'index.html'));
@@ -29,12 +37,20 @@ const config: ForgeConfig = {
           force: true,
           recursive: true
         });
+        await fs.promises.cp(localesPath, path.resolve(outputPath, 'resources/app/localization/locales'), {
+          force: true,
+          recursive: true
+        });
       }
     },
   },
   rebuildConfig: {},
   makers: [new MakerSquirrel({}), new MakerZIP({}, ['darwin']), new MakerRpm({}), new MakerDeb({})],
   plugins: [
+    /*{
+      name: '@electron-forge/plugin-auto-unpack-natives',
+      config: {}
+    },*/
     new WebpackPlugin({
       devContentSecurityPolicy: `default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;`,
       mainConfig,
