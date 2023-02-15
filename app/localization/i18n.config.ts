@@ -11,8 +11,6 @@ import whitelist from './whitelist';
 const isDev = window.api.i18nextElectronBackend.clientOptions.environment === "development";
 const prependPath = isDev ? `./app` : `${window.api.i18nextElectronBackend.clientOptions.resourcesPath}/resources`
 
-console.log(window.api.i18nextElectronBackend.clientOptions, prependPath)
-
 i18next
   .use(i18nBackend)
   .use({
@@ -28,7 +26,7 @@ i18next
       addPath: prependPath + "/localization/locales/{{lng}}/{{ns}}.missing.json",
       contextBridgeApiKey: "api" // needs to match first parameter of contextBridge.exposeInMainWorld in preload file; defaults to "api"
     },
-    debug: true,
+    debug: isDev,
     ns: 'translation',
     saveMissing: true,
     saveMissingTo: "current",

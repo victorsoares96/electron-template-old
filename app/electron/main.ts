@@ -1,5 +1,4 @@
 import fs from 'fs';
-import path from 'path';
 import crypto from 'crypto';
 import { app, BrowserWindow, protocol, session, ipcMain, Menu } from 'electron';
 // import installExtension, { REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
@@ -57,7 +56,7 @@ const createWindow = (): void => {
     width: 800,
     title: "Application is currently initializing...",
     webPreferences: {
-      // devTools: isDev,
+      devTools: isDev,
       // allowRunningInsecureContent: false,
       nodeIntegration: false,
       nodeIntegrationInWorker: false,

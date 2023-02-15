@@ -53,15 +53,9 @@ function requestHandler(req: Electron.ProtocolRequest, next: (response: (Buffer)
     reqPath = "/main_window/index.html";
   }
 
-  /*if (reqPath.includes('/main_window')) {
-    electron.clipboard.writeText(JSON.stringify({ reqPath, newReqPath: reqPath.replace('/main_window', '') }));
-    reqPath = reqPath.replace('/main_window', '')
-  }*/
-
   const reqFilename = path.basename(reqPath);
 
   if (reqPath.includes('/.webpack/renderer') && reqPath.includes(reqFilename)) {
-    // electron.clipboard.writeText(JSON.stringify({ reqPath, reqUrl, reqFilename, DIST_PATH, cwd: process.cwd(), dirname: __dirname, nextReqPath: path.join(DIST_PATH, `/main_window/${reqFilename}`) }));
     reqPath = `/main_window/${reqFilename}`
   }
 
@@ -74,7 +68,6 @@ function requestHandler(req: Electron.ProtocolRequest, next: (response: (Buffer)
         data
       });
     } else {
-      electron.clipboard.writeText(JSON.stringify({ err, reqPath, reqUrl, reqFilename, DIST_PATH, cwd: process.cwd(), dirname: __dirname }));
       throw err;
     }
   });

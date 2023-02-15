@@ -16,18 +16,18 @@ const prependPath = isDev ? `${app.getAppPath()}/app` : `${process.resourcesPath
 
 i18next
   .use(backend)
-  .use({
+  /*.use({
     type: 'logger',
     log: (args: any) => fs.writeFileSync(path.resolve(process.cwd(), `${app.name}_i18n_log_${Date.now()}.txt`), JSON.stringify(args)),
     warn: (args: any) => fs.writeFileSync(path.resolve(process.cwd(), `${app.name}_i18n_warn_${Date.now()}.txt`), JSON.stringify(args)),
     error: (args: any) => fs.writeFileSync(path.resolve(process.cwd(), `${app.name}_i18n_error_${Date.now()}.txt`), JSON.stringify(args))
-  })
+  })*/
   .init({
     backend: {
       loadPath: prependPath + "/localization/locales/{{lng}}/{{ns}}.json",
       addPath: prependPath + "/localization/locales/{{lng}}/{{ns}}.missing.json"
     },
-    debug: true,
+    debug: isDev,
     ns: "translation",
     saveMissing: true,
     saveMissingTo: "current",
