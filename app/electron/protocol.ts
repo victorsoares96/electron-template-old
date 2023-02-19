@@ -17,46 +17,49 @@ import path from 'path';
 import electron from 'electron';
 
 const DIST_PATH = path.resolve(__dirname, '../renderer');
-const scheme = "app";
+const scheme = 'app';
 
 const mimeTypes: { [key: string]: string } = {
-  ".js": "text/javascript",
-  ".mjs": "text/javascript",
-  ".html": "text/html",
-  ".htm": "text/html",
-  ".json": "application/json",
-  ".css": "text/css",
-  ".svg": "image/svg+xml",
-  ".ico": "image/vnd.microsoft.icon",
-  ".png": "image/png",
-  ".jpg": "image/jpeg",
-  ".map": "text/plain"
+  '.js': 'text/javascript',
+  '.mjs': 'text/javascript',
+  '.html': 'text/html',
+  '.htm': 'text/html',
+  '.json': 'application/json',
+  '.css': 'text/css',
+  '.svg': 'image/svg+xml',
+  '.ico': 'image/vnd.microsoft.icon',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.map': 'text/plain',
 };
 
 function charset(mimeExt: string) {
-  return [".html", ".htm", ".js", ".mjs"].some((m) => m === mimeExt) ?
-    "utf-8" :
-    null;
+  return ['.html', '.htm', '.js', '.mjs'].some(m => m === mimeExt)
+    ? 'utf-8'
+    : null;
 }
 
 function mime(filename: string) {
-  const mimeExt = path.extname(`${filename || ""}`).toLowerCase();
+  const mimeExt = path.extname(`${filename || ''}`).toLowerCase();
   const mimeType = mimeTypes[mimeExt];
   return mimeType ? { mimeExt, mimeType } : { mimeExt: null, mimeType: null };
 }
 
-function requestHandler(req: Electron.ProtocolRequest, next: (response: (Buffer) | (Electron.ProtocolResponse)) => void) {
+function requestHandler(
+  req: Electron.ProtocolRequest,
+  next: (response: Buffer | Electron.ProtocolResponse) => void,
+) {
   const reqUrl = new URL(req.url);
   let reqPath = path.normalize(reqUrl.pathname);
 
-  if (reqPath === "/index.html") {
-    reqPath = "/main_window/index.html";
+  if (reqPath === '/index.html') {
+    reqPath = '/main_window/index.html';
   }
 
   const reqFilename = path.basename(reqPath);
 
   if (reqPath.includes('/.webpack/renderer') && reqPath.includes(reqFilename)) {
-    reqPath = `/main_window/${reqFilename}`
+    reqPath = `/main_window/${reqFilename}`;
   }
 
   fs.readFile(path.join(DIST_PATH, reqPath), (err, data) => {
@@ -65,7 +68,7 @@ function requestHandler(req: Electron.ProtocolRequest, next: (response: (Buffer)
       next({
         mimeType,
         charset: charset(mimeExt),
-        data
+        data,
       });
     } else {
       throw err;

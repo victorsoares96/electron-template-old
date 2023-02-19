@@ -32,34 +32,45 @@ const { Translate } = v2;
   language from which to translate.
 */
 
-const projectId = "YOUR_PROJECT_ID";
+const projectId = 'YOUR_PROJECT_ID';
 
 if (projectId === 'YOUR_PROJECT_ID') {
-  console.log("The translate-missing.ts file must be updated before it can be ran.");
+  console.log(
+    'The translate-missing.ts file must be updated before it can be ran.',
+  );
   process.exit(1);
 }
 
 // Instantiates a client
 const translate = new Translate({
-  projectId
+  projectId,
 });
 
 (async () => {
   try {
-    const root = "./app/localization/locales";
-    const fromLanguage = "en";
+    const root = './app/localization/locales';
+    const fromLanguage = 'en';
 
     // Get valid languages from Google Translate API
     let [googleLanguages] = await translate.getLanguages(); // ie. { code: "en", name: "English" }
-    googleLanguages = googleLanguages.map(gl => gl.code.replace("-", "_")) as unknown as v2.LanguageResult[]
+    googleLanguages = googleLanguages.map(gl =>
+      gl.code.replace('-', '_'),
+    ) as unknown as v2.LanguageResult[];
 
     // Uncomment me to view the various languages Google can translate to/from
-    //console.log(googleLanguages);
+    // console.log(googleLanguages);
 
     // Get all language directories;
     // https://stackoverflow.com/a/35759360/1837080
-    const getDirectories = (p: string) => fs.readdirSync(p).filter(f => fs.statSync(path.join(p, f)).isDirectory()) as unknown as v2.LanguageResult[];
-    const languageDirectories = getDirectories(root).filter(d => googleLanguages.includes(d));
+    const getDirectories = (p: string) =>
+      fs
+        .readdirSync(p)
+        .filter(f =>
+          fs.statSync(path.join(p, f)).isDirectory(),
+        ) as unknown as v2.LanguageResult[];
+    const languageDirectories = getDirectories(root).filter(d =>
+      googleLanguages.includes(d),
+    );
 
     // For each language, read in any missing translations
     // and translate
@@ -74,25 +85,27 @@ const translate = new Translate({
         const translationMissingExists = fs.existsSync(missingTranslationFile);
 
         if (translationExists && translationMissingExists) {
-
           // Read in contents of files
-          const translations = JSON.parse(fs.readFileSync(translationFile, {
-            encoding: "utf8"
-          }));
-          const missing = JSON.parse(fs.readFileSync(missingTranslationFile, {
-            encoding: "utf8"
-          }));
+          const translations = JSON.parse(
+            fs.readFileSync(translationFile, {
+              encoding: 'utf8',
+            }),
+          );
+          const missing = JSON.parse(
+            fs.readFileSync(missingTranslationFile, {
+              encoding: 'utf8',
+            }),
+          );
 
           // Only translate files with actual values
           const missingKeys = Object.keys(missing);
           if (missingKeys.length > 0) {
-
             // Translate each of the missing keys to the target language
             for (const missingKey of missingKeys) {
               const googleTranslation = await translate.translate(missingKey, {
                 from: fromLanguage,
-                to: languageDirectory as unknown as string
-              })
+                to: languageDirectory as unknown as string,
+              });
 
               // Only set if a value is returned
               if (googleTranslation.length > 0) {
@@ -101,29 +114,42 @@ const translate = new Translate({
             }
 
             // Write output back to file
-            fs.writeFileSync(translationFile, JSON.stringify(translations, null, 2));
-            fs.writeFileSync(missingTranslationFile, JSON.stringify({}, null, 2));
+            fs.writeFileSync(
+              translationFile,
+              JSON.stringify(translations, null, 2),
+            );
+            fs.writeFileSync(
+              missingTranslationFile,
+              JSON.stringify({}, null, 2),
+            );
 
-            console.log(`Successfully updated translations for ${languageDirectory}`);
+            console.log(
+              `Successfully updated translations for ${languageDirectory}`,
+            );
           } else {
-            console.log(`Skipped creating translations for ${languageDirectory}; none found!`);
+            console.log(
+              `Skipped creating translations for ${languageDirectory}; none found!`,
+            );
           }
         } else {
-
           // Log if we failed
           if (!translationExists) {
-            console.error(`Could not generate translations for language '${languageDirectory}' because ${translationFile} does not exist, skipping!`);
+            console.error(
+              `Could not generate translations for language '${languageDirectory}' because ${translationFile} does not exist, skipping!`,
+            );
           } else if (!translationMissingExists) {
-            console.error(`Could not generate translations for language '${languageDirectory}' because ${missingTranslationFile} does not exist, skipping!`);
+            console.error(
+              `Could not generate translations for language '${languageDirectory}' because ${missingTranslationFile} does not exist, skipping!`,
+            );
           }
         }
       } catch (error) {
-        console.error("Failed due to fatal error");
+        console.error('Failed due to fatal error');
         console.error(error);
       }
     }
   } catch (e) {
-    console.error("Failed due to fatal error");
+    console.error('Failed due to fatal error');
     console.error(e);
   }
 })();

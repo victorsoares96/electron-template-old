@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
-import SubItem from "@src/components/subitem/subitem";
+import React, { useEffect } from 'react';
+import SubItem from '@src/components/subitem/subitem';
 
 function ContextMenu() {
   useEffect(() => {
     // Set up binding in code whenever the context menu item
     // of id "alert" is selected
-    window.api.contextMenu.onReceive("loudAlert", function (args: any) {
+    window.api.contextMenu.onReceive('loudAlert', function (args: any) {
       alert(
-        `This alert was brought to you by secure-electron-context-menu by ${args.attributes.name}`
+        `This alert was brought to you by secure-electron-context-menu by ${args.attributes.name}`,
       );
 
       // Note - we have access to the "params" object as defined here: https://www.electronjs.org/docs/api/web-contents#event-context-menu
@@ -22,7 +22,7 @@ function ContextMenu() {
     };
   }, []);
   return (
-    <React.Fragment>
+    <>
       <section className="section">
         <div className="container has-text-centered">
           <h1
@@ -38,11 +38,11 @@ function ContextMenu() {
       <section className="section">
         <div className="container has-text-centered">
           {/* Demonstrating how to use the context menu with multiple items */}
-          <SubItem id="1"></SubItem>
-          <SubItem id="2"></SubItem>
+          <SubItem id="1" />
+          <SubItem id="2" />
         </div>
       </section>
-    </React.Fragment>
+    </>
   );
 }
 

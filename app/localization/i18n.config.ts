@@ -8,8 +8,11 @@ import whitelist from './whitelist';
 // On Mac, the folder for resources isn't
 // in the same directory as Linux/Windows;
 // https://www.electron.build/configuration/contents#extrafiles
-const isDev = window.api.i18nextElectronBackend.clientOptions.environment === "development";
-const prependPath = isDev ? `./app` : `${window.api.i18nextElectronBackend.clientOptions.resourcesPath}/resources`
+const isDev =
+  window.api.i18nextElectronBackend.clientOptions.environment === 'development';
+const prependPath = isDev
+  ? `./app`
+  : `${window.api.i18nextElectronBackend.clientOptions.resourcesPath}/resources`;
 
 i18next
   .use(i18nBackend)
@@ -17,22 +20,22 @@ i18next
     type: 'logger',
     log: (args: any) => console.log('i18n_log', args),
     warn: (args: any) => console.log('i18n_warn', args),
-    error: (args: any) => console.log('i18n_error', args)
+    error: (args: any) => console.log('i18n_error', args),
   })
   .use(initReactI18next)
   .init({
     backend: {
-      loadPath: prependPath + "/localization/locales/{{lng}}/{{ns}}.json",
-      addPath: prependPath + "/localization/locales/{{lng}}/{{ns}}.missing.json",
-      contextBridgeApiKey: "api" // needs to match first parameter of contextBridge.exposeInMainWorld in preload file; defaults to "api"
+      loadPath: `${prependPath}/localization/locales/{{lng}}/{{ns}}.json`,
+      addPath: `${prependPath}/localization/locales/{{lng}}/{{ns}}.missing.json`,
+      contextBridgeApiKey: 'api', // needs to match first parameter of contextBridge.exposeInMainWorld in preload file; defaults to "api"
     },
     debug: isDev,
     ns: 'translation',
     saveMissing: true,
-    saveMissingTo: "current",
-    lng: "en",
+    saveMissingTo: 'current',
+    lng: 'en',
     fallbackLng: false, // set to false when generating translation files locally
-    supportedLngs: whitelist.langs
+    supportedLngs: whitelist.langs,
   });
 
 window.api.i18nextElectronBackend.onLanguageChange((args: any) => {

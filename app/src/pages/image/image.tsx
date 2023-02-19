@@ -1,4 +1,4 @@
-import img from "@src/assets/testimage.png";
+import img from '@src/assets/testimage.png';
 
 function Image() {
   return (

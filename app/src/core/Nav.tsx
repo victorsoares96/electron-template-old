@@ -1,11 +1,11 @@
-import { NavigateFunction, useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import {
   validateLicenseRequest,
   validateLicenseResponse,
   // @ts-ignore
-} from "secure-electron-license-keys";
-import ROUTES from "@src/constants/routes.json";
-import { useEffect, useState } from "react";
+} from 'secure-electron-license-keys';
+import ROUTES from '@src/constants/routes.json';
+import { useEffect, useState } from 'react';
 
 interface LicenseModalProps {
   licenseModalActive: boolean;
@@ -30,11 +30,11 @@ function LicenseModal({
   allowedPatchVersions,
   licenseExpiry,
   appVersion,
-  toggleLicenseModal
+  toggleLicenseModal,
 }: LicenseModalProps) {
   return (
-    <div className={`modal ${licenseModalActive ? "is-active" : ""}`}>
-      <div className="modal-background"></div>
+    <div className={`modal ${licenseModalActive ? 'is-active' : ''}`}>
+      <div className="modal-background" />
       <div className="modal-content">
         {licenseValid ? (
           <div className="box">
@@ -44,8 +44,8 @@ function LicenseModal({
               <strong>Major versions:</strong> {allowedMajorVersions} <br />
               <strong>Minor versions:</strong> {allowedMinorVersions} <br />
               <strong>Patch versions:</strong> {allowedPatchVersions} <br />
-              <strong>Expires on:</strong>{" "}
-              {!licenseExpiry ? "never!" : licenseExpiry} <br />(
+              <strong>Expires on:</strong>{' '}
+              {!licenseExpiry ? 'never!' : licenseExpiry} <br />(
               <em>
                 App version:
                 {` v${appVersion?.major}.${appVersion?.minor}.${appVersion?.patch}`}
@@ -59,7 +59,7 @@ function LicenseModal({
             <div>The license key is not valid.</div>
             <div>
               If you'd like to create a license key, follow these steps:
-              <ol style={{ marginLeft: "30px" }}>
+              <ol style={{ marginLeft: '30px' }}>
                 <li>
                   Install this package globally (
                   <strong>npm i secure-electron-license-keys-cli -g</strong>).
@@ -68,7 +68,7 @@ function LicenseModal({
                   Run <strong>secure-electron-license-keys-cli</strong>.
                 </li>
                 <li>
-                  Copy <strong>public.key</strong> and{" "}
+                  Copy <strong>public.key</strong> and{' '}
                   <strong>license.data</strong> into the <em>root</em> folder of
                   this app.
                 </li>
@@ -77,7 +77,7 @@ function LicenseModal({
                 </li>
                 <li>
                   If you'd like to further customize your license keys, copy
-                  this link into your browser:{" "}
+                  this link into your browser:{' '}
                   <a href="https://github.com/reZach/secure-electron-license-keys-cli">
                     https://github.com/reZach/secure-electron-license-keys-cli
                   </a>
@@ -88,12 +88,12 @@ function LicenseModal({
           </div>
         )}
       </div>
-      
+
       <button
         className="modal-close is-large"
         aria-label="close"
         onClick={toggleLicenseModal}
-      ></button>
+      />
     </div>
   );
 }
@@ -102,18 +102,18 @@ function Nav(props: { navigate: NavigateFunction }) {
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
   const [licenseModalActive, setLicenseModalActive] = useState(false);
   const [licenseValid, setLicenseValid] = useState(false);
-  const [allowedMajorVersions, setAllowedMajorVersions] = useState("");
-  const [allowedMinorVersions, setAllowedMinorVersions] = useState("");
-  const [allowedPatchVersions, setAllowedPatchVersions] = useState("");
+  const [allowedMajorVersions, setAllowedMajorVersions] = useState('');
+  const [allowedMinorVersions, setAllowedMinorVersions] = useState('');
+  const [allowedPatchVersions, setAllowedPatchVersions] = useState('');
   const [appVersion, setAppVersion] = useState<{
     major: number;
     minor: number;
     patch: number;
   } | null>(null);
-  const [licenseExpiry, setLicenseExpiry] = useState("");
+  const [licenseExpiry, setLicenseExpiry] = useState('');
 
   function toggleMenu() {
-    setMobileMenuActive((oldState) => !oldState);
+    setMobileMenuActive(oldState => !oldState);
   }
 
   function toggleLicenseModal() {
@@ -125,7 +125,7 @@ function Nav(props: { navigate: NavigateFunction }) {
       window.api.licenseKeys.send(validateLicenseRequest);
     }
 
-    setLicenseModalActive((oldState) => !oldState);
+    setLicenseModalActive(oldState => !oldState);
   }
 
   // Using a custom method to navigate because we
@@ -155,7 +155,7 @@ function Nav(props: { navigate: NavigateFunction }) {
         } else {
           setLicenseValid(false);
         }
-      }
+      },
     );
 
     return () => {
@@ -171,20 +171,20 @@ function Nav(props: { navigate: NavigateFunction }) {
       <div className="navbar-brand">
         <a
           role="button"
-          className={`navbar-burger ${mobileMenuActive ? "is-active" : ""}`}
+          className={`navbar-burger ${mobileMenuActive ? 'is-active' : ''}`}
           data-target="navbarBasicExample"
           aria-label="menu"
           aria-expanded="false"
           onClick={() => toggleMenu()}
         >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
         </a>
       </div>
       <div
         id="navbarBasicExample"
-        className={`navbar-menu ${mobileMenuActive ? "is-active" : ""}`}
+        className={`navbar-menu ${mobileMenuActive ? 'is-active' : ''}`}
       >
         <div className="navbar-start">
           <a className="navbar-item" onClick={() => navigate(ROUTES.WELCOME)}>

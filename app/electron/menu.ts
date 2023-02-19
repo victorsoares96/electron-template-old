@@ -1,256 +1,257 @@
 import { Menu, BrowserWindow } from 'electron';
 import i18next from 'i18next';
 
-import whitelist from "../localization/whitelist";
+import whitelist from '../localization/whitelist';
 
-const isMac = process.platform === "darwin";
+const isMac = process.platform === 'darwin';
 
 const MenuBuilder = function (mainWindow: BrowserWindow, appName: string) {
-
   // https://electronjs.org/docs/api/menu#main-process
-  const defaultTemplate = function (i18nextMainBackend: typeof i18next): (Electron.MenuItemConstructorOptions | Electron.MenuItem)[] {
+  const defaultTemplate = function (
+    i18nextMainBackend: typeof i18next,
+  ): (Electron.MenuItemConstructorOptions | Electron.MenuItem)[] {
     return [
       // { role: "appMenu" }
       ...(isMac
-        ? [
-          {
-            label: appName,
-            submenu: [
-              {
-                role: "about",
-                label: i18nextMainBackend.t("About")
-              },
-              {
-                type: 'separator'
-              },
-              {
-                role: "services",
-                label: i18nextMainBackend.t("Services")
-              },
-              {
-                type: "separator"
-              },
-              {
-                role: "hide",
-                label: i18nextMainBackend.t("Hide")
-              },
-              {
-                role: "hideothers",
-                label: i18nextMainBackend.t("Hide Others")
-              },
-              {
-                role: "unhide",
-                label: i18nextMainBackend.t("Unhide")
-              },
-              {
-                type: "separator"
-              },
-              {
-                role: "quit",
-                label: i18nextMainBackend.t("Quit")
-              }
-            ]
-          }
-        ] as Electron.MenuItemConstructorOptions[]
+        ? ([
+            {
+              label: appName,
+              submenu: [
+                {
+                  role: 'about',
+                  label: i18nextMainBackend.t('About'),
+                },
+                {
+                  type: 'separator',
+                },
+                {
+                  role: 'services',
+                  label: i18nextMainBackend.t('Services'),
+                },
+                {
+                  type: 'separator',
+                },
+                {
+                  role: 'hide',
+                  label: i18nextMainBackend.t('Hide'),
+                },
+                {
+                  role: 'hideothers',
+                  label: i18nextMainBackend.t('Hide Others'),
+                },
+                {
+                  role: 'unhide',
+                  label: i18nextMainBackend.t('Unhide'),
+                },
+                {
+                  type: 'separator',
+                },
+                {
+                  role: 'quit',
+                  label: i18nextMainBackend.t('Quit'),
+                },
+              ],
+            },
+          ] as Electron.MenuItemConstructorOptions[])
         : []),
       // { role: "fileMenu" }
       {
-        label: i18nextMainBackend.t("File"),
+        label: i18nextMainBackend.t('File'),
         submenu: [
           isMac
             ? {
-              role: "close",
-              label: i18nextMainBackend.t("Quit")
-            }
+                role: 'close',
+                label: i18nextMainBackend.t('Quit'),
+              }
             : {
-              role: "quit",
-              label: i18nextMainBackend.t("Exit")
-            }
-        ]
+                role: 'quit',
+                label: i18nextMainBackend.t('Exit'),
+              },
+        ],
       },
       // { role: "editMenu" }
       {
-        label: i18nextMainBackend.t("Edit"),
+        label: i18nextMainBackend.t('Edit'),
         submenu: [
           {
-            role: "undo",
-            label: i18nextMainBackend.t("Undo")
+            role: 'undo',
+            label: i18nextMainBackend.t('Undo'),
           },
           {
-            role: "redo",
-            label: i18nextMainBackend.t("Redo")
+            role: 'redo',
+            label: i18nextMainBackend.t('Redo'),
           },
           {
-            type: "separator"
+            type: 'separator',
           },
           {
-            role: "cut",
-            label: i18nextMainBackend.t("Cut")
+            role: 'cut',
+            label: i18nextMainBackend.t('Cut'),
           },
           {
-            role: "copy",
-            label: i18nextMainBackend.t("Copy")
+            role: 'copy',
+            label: i18nextMainBackend.t('Copy'),
           },
           {
-            role: "paste",
-            label: i18nextMainBackend.t("Paste")
+            role: 'paste',
+            label: i18nextMainBackend.t('Paste'),
           },
-          ...(isMac
+          ...((isMac
             ? [
-              {
-                role: "pasteAndMatchStyle",
-                label: i18nextMainBackend.t("Paste and Match Style")
-              },
-              {
-                role: "delete",
-                label: i18nextMainBackend.t("Delete")
-              },
-              {
-                role: "selectAll",
-                label: i18nextMainBackend.t("Select All")
-              },
-              {
-                type: "separator"
-              },
-              {
-                label: i18nextMainBackend.t("Speech"),
-                submenu: [
-                  {
-                    role: "startspeaking",
-                    label: i18nextMainBackend.t("Start Speaking")
-                  },
-                  {
-                    role: "stopspeaking",
-                    label: i18nextMainBackend.t("Stop Speaking")
-                  }
-                ]
-              }
-            ]
+                {
+                  role: 'pasteAndMatchStyle',
+                  label: i18nextMainBackend.t('Paste and Match Style'),
+                },
+                {
+                  role: 'delete',
+                  label: i18nextMainBackend.t('Delete'),
+                },
+                {
+                  role: 'selectAll',
+                  label: i18nextMainBackend.t('Select All'),
+                },
+                {
+                  type: 'separator',
+                },
+                {
+                  label: i18nextMainBackend.t('Speech'),
+                  submenu: [
+                    {
+                      role: 'startspeaking',
+                      label: i18nextMainBackend.t('Start Speaking'),
+                    },
+                    {
+                      role: 'stopspeaking',
+                      label: i18nextMainBackend.t('Stop Speaking'),
+                    },
+                  ],
+                },
+              ]
             : [
-              {
-                role: "delete",
-                label: i18nextMainBackend.t("Delete")
-              },
-              {
-                type: "separator"
-              },
-              {
-                role: "selectAll",
-                label: i18nextMainBackend.t("Select All")
-              }
-            ]) as Electron.MenuItemConstructorOptions[]
-        ]
+                {
+                  role: 'delete',
+                  label: i18nextMainBackend.t('Delete'),
+                },
+                {
+                  type: 'separator',
+                },
+                {
+                  role: 'selectAll',
+                  label: i18nextMainBackend.t('Select All'),
+                },
+              ]) as Electron.MenuItemConstructorOptions[]),
+        ],
       },
       // { role: "viewMenu" }
       {
-        label: i18nextMainBackend.t("View"),
+        label: i18nextMainBackend.t('View'),
         submenu: [
           {
-            role: "reload",
-            label: i18nextMainBackend.t("Reload")
+            role: 'reload',
+            label: i18nextMainBackend.t('Reload'),
           },
           {
             role: 'forceReload',
-            label: i18nextMainBackend.t("Force Reload")
+            label: i18nextMainBackend.t('Force Reload'),
           },
           {
             role: 'toggleDevTools',
-            label: i18nextMainBackend.t("Toggle Developer Tools")
+            label: i18nextMainBackend.t('Toggle Developer Tools'),
           },
           {
-            type: "separator"
+            type: 'separator',
           },
           {
             role: 'resetZoom',
-            label: i18nextMainBackend.t("Reset Zoom")
+            label: i18nextMainBackend.t('Reset Zoom'),
           },
           {
             role: 'zoomIn',
-            label: i18nextMainBackend.t("Zoom In")
+            label: i18nextMainBackend.t('Zoom In'),
           },
           {
-            role: "zoomOut",
-            label: i18nextMainBackend.t("Zoom Out")
+            role: 'zoomOut',
+            label: i18nextMainBackend.t('Zoom Out'),
           },
           {
-            type: "separator"
+            type: 'separator',
           },
           {
-            role: "togglefullscreen",
-            label: i18nextMainBackend.t("Toggle Fullscreen")
-          }
-        ]
+            role: 'togglefullscreen',
+            label: i18nextMainBackend.t('Toggle Fullscreen'),
+          },
+        ],
       },
       // language menu
       {
-        label: i18nextMainBackend.t("Language"),
+        label: i18nextMainBackend.t('Language'),
         submenu: whitelist.buildSubmenu(
           // is the same i18nBackend.changeLanguageRequest
-          "ChangeLanguage-Request", 
-          i18nextMainBackend
-        )
+          'ChangeLanguage-Request',
+          i18nextMainBackend,
+        ),
       },
       // { role: "windowMenu" }
       {
-        label: i18nextMainBackend.t("Window"),
+        label: i18nextMainBackend.t('Window'),
         submenu: [
           {
-            role: "minimize",
-            label: i18nextMainBackend.t("Minimize")
+            role: 'minimize',
+            label: i18nextMainBackend.t('Minimize'),
           },
           {
-            role: "zoom",
-            label: i18nextMainBackend.t("Zoom")
+            role: 'zoom',
+            label: i18nextMainBackend.t('Zoom'),
           },
-          ...(isMac
+          ...((isMac
             ? [
-              {
-                type: "separator"
-              },
-              {
-                role: "front",
-                label: i18nextMainBackend.t("Front")
-              },
-              {
-                type: "separator"
-              },
-              {
-                role: "window",
-                label: i18nextMainBackend.t("Window")
-              }
-            ]
+                {
+                  type: 'separator',
+                },
+                {
+                  role: 'front',
+                  label: i18nextMainBackend.t('Front'),
+                },
+                {
+                  type: 'separator',
+                },
+                {
+                  role: 'window',
+                  label: i18nextMainBackend.t('Window'),
+                },
+              ]
             : [
-              {
-                role: "close",
-                label: i18nextMainBackend.t("Close")
-              }
-            ]) as Electron.MenuItemConstructorOptions[]
-        ]
+                {
+                  role: 'close',
+                  label: i18nextMainBackend.t('Close'),
+                },
+              ]) as Electron.MenuItemConstructorOptions[]),
+        ],
       },
       {
-        role: "help",
-        label: i18nextMainBackend.t("Help"),
+        role: 'help',
+        label: i18nextMainBackend.t('Help'),
         submenu: [
           {
-            label: i18nextMainBackend.t("Learn More"),
+            label: i18nextMainBackend.t('Learn More'),
             click: async () => {
               // eslint-disable-next-line @typescript-eslint/no-var-requires
-              const { shell } = require("electron");
-              await shell.openExternal("https://electronjs.org");
-            }
-          }
-        ]
-      }
+              const { shell } = require('electron');
+              await shell.openExternal('https://electronjs.org');
+            },
+          },
+        ],
+      },
     ];
   };
 
   return {
-    buildMenu: function (i18nextMainBackend: typeof i18next) {
+    buildMenu(i18nextMainBackend: typeof i18next) {
       const menu = Menu.buildFromTemplate(defaultTemplate(i18nextMainBackend));
       Menu.setApplicationMenu(menu);
 
       return menu;
-    }
+    },
   };
 };
 
