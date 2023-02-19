@@ -22,7 +22,7 @@ function UndoRedo() {
   // @ts-ignore
   const future = useAppSelector(state => state.undoable.future);
   return (
-    <React.Fragment>
+    <>
       <section className="section">
         <div className="container has-text-centered">
           <h1 className="title is-1">Undo/Redo</h1>
@@ -45,11 +45,7 @@ function UndoRedo() {
                 <div className="field-body">
                   <div className="field is-horizontal">
                     <div className="control">
-                      <input
-                        className="input"
-                        value={counter.value}
-                        disabled={true}
-                      />
+                      <input className="input" value={counter.value} disabled />
                     </div>
 
                     <button
@@ -82,7 +78,7 @@ function UndoRedo() {
                       <input
                         className="input"
                         value={complex.length}
-                        disabled={true}
+                        disabled
                       />
                     </div>
 
@@ -183,7 +179,7 @@ function UndoRedo() {
           </div>
         </div>
       </section>
-    </React.Fragment>
+    </>
   );
 }
 

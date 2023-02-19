@@ -5,9 +5,9 @@ import { HistoryRouter } from 'redux-first-history/rr6';
 import i18n from '@localization/i18n.config';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import { store, history } from './store';
 import Nav from '@src/core/Nav';
 import AppRoutes from '@src/core/Routes';
+import { store, history } from './store';
 import 'bulma/css/bulma.css';
 
 const container = document.getElementById('root');

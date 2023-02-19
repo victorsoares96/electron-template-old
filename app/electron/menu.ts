@@ -246,7 +246,7 @@ const MenuBuilder = function (mainWindow: BrowserWindow, appName: string) {
   };
 
   return {
-    buildMenu: function (i18nextMainBackend: typeof i18next) {
+    buildMenu(i18nextMainBackend: typeof i18next) {
       const menu = Menu.buildFromTemplate(defaultTemplate(i18nextMainBackend));
       Menu.setApplicationMenu(menu);
 

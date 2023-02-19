@@ -41,13 +41,13 @@ const Image = loadable(
 function AppRoutes() {
   return (
     <Routes>
-      <Route path={ROUTES.WELCOME} element={<Welcome />}></Route>
-      <Route path={ROUTES.ABOUT} element={<About />}></Route>
-      <Route path={ROUTES.MOTD} element={<Motd />}></Route>
-      <Route path={ROUTES.LOCALIZATION} element={<Localization />}></Route>
-      <Route path={ROUTES.UNDOREDO} element={<UndoRedo />}></Route>
-      <Route path={ROUTES.CONTEXTMENU} element={<ContextMenu />}></Route>
-      <Route path={ROUTES.IMAGE} element={<Image />}></Route>
+      <Route path={ROUTES.WELCOME} element={<Welcome />} />
+      <Route path={ROUTES.ABOUT} element={<About />} />
+      <Route path={ROUTES.MOTD} element={<Motd />} />
+      <Route path={ROUTES.LOCALIZATION} element={<Localization />} />
+      <Route path={ROUTES.UNDOREDO} element={<UndoRedo />} />
+      <Route path={ROUTES.CONTEXTMENU} element={<ContextMenu />} />
+      <Route path={ROUTES.IMAGE} element={<Image />} />
     </Routes>
   );
 }

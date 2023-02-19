@@ -58,7 +58,7 @@ const translate = new Translate({
     ) as unknown as v2.LanguageResult[];
 
     // Uncomment me to view the various languages Google can translate to/from
-    //console.log(googleLanguages);
+    // console.log(googleLanguages);
 
     // Get all language directories;
     // https://stackoverflow.com/a/35759360/1837080

@@ -3,7 +3,7 @@ import type i18next from 'i18next';
 
 // Contains a whitelist of languages for our app
 const whitelistMap: { [key: string]: string } = {
-  af: 'Afrikaans', //Afrikaans
+  af: 'Afrikaans', // Afrikaans
   ar: 'عربى', // Arabic
   am: 'አማርኛ', // Amharic
   bg: 'български', // Bulgarian
@@ -77,7 +77,7 @@ const Whitelist = (function () {
 
   return {
     langs: keys,
-    buildSubmenu: function (
+    buildSubmenu(
       channel: string,
       i18nextMainBackend: typeof i18next,
     ): Electron.MenuItemConstructorOptions[] {

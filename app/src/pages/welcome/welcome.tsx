@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Welcome() {
   return (
-    <React.Fragment>
+    <>
       <section className="section">
         <div className="container">
           <section className="hero is-info">
@@ -31,7 +31,7 @@ function Welcome() {
           </div>
         </div>
       </section>
-    </React.Fragment>
+    </>
   );
 }
 

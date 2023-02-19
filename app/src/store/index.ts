@@ -1,5 +1,8 @@
-import { combineReducers } from 'redux';
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import {
+  configureStore,
+  getDefaultMiddleware,
+  combineReducers,
+} from '@reduxjs/toolkit';
 import { createHashHistory } from 'history';
 import { createReduxHistoryContext } from 'redux-first-history';
 // @ts-ignore

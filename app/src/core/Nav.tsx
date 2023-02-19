@@ -34,7 +34,7 @@ function LicenseModal({
 }: LicenseModalProps) {
   return (
     <div className={`modal ${licenseModalActive ? 'is-active' : ''}`}>
-      <div className="modal-background"></div>
+      <div className="modal-background" />
       <div className="modal-content">
         {licenseValid ? (
           <div className="box">
@@ -93,7 +93,7 @@ function LicenseModal({
         className="modal-close is-large"
         aria-label="close"
         onClick={toggleLicenseModal}
-      ></button>
+      />
     </div>
   );
 }
@@ -177,9 +177,9 @@ function Nav(props: { navigate: NavigateFunction }) {
           aria-expanded="false"
           onClick={() => toggleMenu()}
         >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
         </a>
       </div>
       <div

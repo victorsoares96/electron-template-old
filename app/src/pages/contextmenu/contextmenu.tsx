@@ -22,7 +22,7 @@ function ContextMenu() {
     };
   }, []);
   return (
-    <React.Fragment>
+    <>
       <section className="section">
         <div className="container has-text-centered">
           <h1
@@ -38,11 +38,11 @@ function ContextMenu() {
       <section className="section">
         <div className="container has-text-centered">
           {/* Demonstrating how to use the context menu with multiple items */}
-          <SubItem id="1"></SubItem>
-          <SubItem id="2"></SubItem>
+          <SubItem id="1" />
+          <SubItem id="2" />
         </div>
       </section>
-    </React.Fragment>
+    </>
   );
 }
 

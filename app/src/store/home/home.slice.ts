@@ -6,8 +6,8 @@ export type HomeState = {
 
 const initialState: HomeState = {
   message:
-    typeof window.api.store.initial()['motd'] !== 'undefined'
-      ? window.api.store.initial()['motd']
+    typeof window.api.store.initial().motd !== 'undefined'
+      ? window.api.store.initial().motd
       : 'Hello and welcome to the template!',
 };
 

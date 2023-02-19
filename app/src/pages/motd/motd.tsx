@@ -33,7 +33,7 @@ function Motd() {
     window.api.store.send(useConfigInMainRequest);
   }, []);
   return (
-    <React.Fragment>
+    <>
       <section className="section">
         <div className="container has-text-centered">
           <h1 className="title is-1">{home.message}</h1>
@@ -61,7 +61,7 @@ function Motd() {
           </form>
         </div>
       </section>
-    </React.Fragment>
+    </>
   );
 }
 

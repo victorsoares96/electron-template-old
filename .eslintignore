@@ -1,2 +1,3 @@
 out
 .webpack
+app/localization/locales/**/*.json

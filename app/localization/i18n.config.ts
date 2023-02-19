@@ -25,9 +25,8 @@ i18next
   .use(initReactI18next)
   .init({
     backend: {
-      loadPath: prependPath + '/localization/locales/{{lng}}/{{ns}}.json',
-      addPath:
-        prependPath + '/localization/locales/{{lng}}/{{ns}}.missing.json',
+      loadPath: `${prependPath}/localization/locales/{{lng}}/{{ns}}.json`,
+      addPath: `${prependPath}/localization/locales/{{lng}}/{{ns}}.missing.json`,
       contextBridgeApiKey: 'api', // needs to match first parameter of contextBridge.exposeInMainWorld in preload file; defaults to "api"
     },
     debug: isDev,
