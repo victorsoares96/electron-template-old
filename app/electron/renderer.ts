@@ -26,5 +26,4 @@
  * ```
  */
 
-// eslint-disable-next-line import/no-unresolved
-import '@src/index';
+import '@src/main';

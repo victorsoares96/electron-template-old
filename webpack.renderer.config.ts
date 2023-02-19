@@ -1,9 +1,9 @@
 import path from 'path';
 import type { Configuration } from 'webpack';
 
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { rules } from './webpack.rules';
 import { plugins } from './webpack.plugins';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 rules.push({
   test: /\.css$/,

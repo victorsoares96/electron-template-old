@@ -52,6 +52,10 @@
         "argsIgnorePattern": "_"
       }
     ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": ["**/*.spec.tsx", "**/*.spec.ts", "**/*.config.ts", "**/webpack.*"] }
+    ],
     "import/no-cycle": "off",
     "class-methods-use-this": "off",
     "func-names": "off",
