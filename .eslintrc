@@ -4,7 +4,7 @@
     "es2021": true,
     "node": true
   },
-  "extends": [ 
+  "extends": [
     "airbnb",
     "airbnb-typescript",
     "plugin:@typescript-eslint/recommended",
@@ -29,7 +29,7 @@
   "settings": {
     "import/resolver": {
       "typescript": {
-          "alwaysTryTypes": true
+        "alwaysTryTypes": true
       }
     }
   },

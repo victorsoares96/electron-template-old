@@ -22,51 +22,50 @@ rules.push({
       loader: 'file-loader',
     },
   ],
-})
+});
 
 if (process.env.NODE_ENV === 'development') {
   plugins.push(
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "app/src/index.html"),
-      filename: "temp/index.html",
+      template: path.resolve(__dirname, 'app/src/index.html'),
+      filename: 'temp/index.html',
       cspPlugin: {
         enabled: true,
         policy: {
-          "base-uri": ["'self'"],
-          "object-src": ["'none'"],
-          "script-src": ["'self'"],
-          "style-src": ["'self'"],
-          "frame-src": ["'none'"],
-          "worker-src": ["'none'"]
+          'base-uri': ["'self'"],
+          'object-src': ["'none'"],
+          'script-src': ["'self'"],
+          'style-src': ["'self'"],
+          'frame-src': ["'none'"],
+          'worker-src': ["'none'"],
         },
       },
-    })
-  )
+    }),
+  );
 } else {
   plugins.push(
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "app/src/index.html"),
+      template: path.resolve(__dirname, 'app/src/index.html'),
       hash: true,
-      filename: "temp/index.html",
+      filename: 'temp/index.html',
       cspPlugin: {
         enabled: true,
         policy: {
-          "base-uri": ["'self'"],
-          "object-src": ["'none'"],
-          "script-src": ["'self'"],
-          "style-src": ["'self'"],
-          "frame-src": ["'none'"],
-          "worker-src": ["'none'"]
+          'base-uri': ["'self'"],
+          'object-src': ["'none'"],
+          'script-src': ["'self'"],
+          'style-src': ["'self'"],
+          'frame-src': ["'none'"],
+          'worker-src': ["'none'"],
         },
         hashEnabled: {
-          "style-src": false
-        }
+          'style-src': false,
+        },
       },
-      base: "app://rse"
-    })
-  )
+      base: 'app://rse',
+    }),
+  );
 }
-
 
 export const rendererConfig: Configuration = {
   module: {
@@ -80,10 +79,10 @@ export const rendererConfig: Configuration = {
       '@localization': path.resolve(__dirname, 'app/localization/'),
     },
     fallback: {
-      "crypto": require.resolve("crypto-browserify"),
-      "buffer": require.resolve("buffer/"),
-      "path": require.resolve("path-browserify"),
-      "stream": require.resolve("stream-browserify")
+      crypto: require.resolve('crypto-browserify'),
+      buffer: require.resolve('buffer/'),
+      path: require.resolve('path-browserify'),
+      stream: require.resolve('stream-browserify'),
     },
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css'],
   },

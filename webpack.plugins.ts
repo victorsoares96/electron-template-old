@@ -9,4 +9,3 @@ export const plugins: Required<Configuration>['plugins'] = [
     logger: 'webpack-infrastructure',
   }),
 ];
-

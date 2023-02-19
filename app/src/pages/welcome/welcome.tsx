@@ -1,6 +1,6 @@
-import React from "react";
-import ROUTES from "@src/constants/routes.json";
-import { Link } from "react-router-dom";
+import React from 'react';
+import ROUTES from '@src/constants/routes.json';
+import { Link } from 'react-router-dom';
 
 function Welcome() {
   return (
