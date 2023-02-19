@@ -26,4 +26,4 @@
  * ```
  */
 
-import '@src/main';
+import '@src/index';

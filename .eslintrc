@@ -46,6 +46,8 @@
     "import/prefer-default-export": "off",
     "no-param-reassign": "off",
     "@typescript-eslint/ban-ts-comment": "warn",
+    "react/jsx-props-no-spreading": "off",
+    "react/no-array-index-key": "warn",
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
@@ -54,11 +56,20 @@
     ],
     "import/no-extraneous-dependencies": [
       "error",
-      { "devDependencies": ["**/*.spec.tsx", "**/*.spec.ts", "**/*.config.ts", "**/webpack.*"] }
+      {
+        "devDependencies": [
+          "**/*.spec.tsx",
+          "**/*.spec.ts",
+          "**/*.config.ts",
+          "**/webpack.*"
+        ]
+      }
     ],
     "import/no-cycle": "off",
     "class-methods-use-this": "off",
     "func-names": "off",
-    "no-restricted-syntax": "warn"
+    "no-restricted-syntax": "warn",
+    "react/react-in-jsx-scope": "off",
+    "react/display-name": "off"
   }
 }
