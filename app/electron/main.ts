@@ -20,7 +20,6 @@ const Store = require('secure-electron-store').default;
 const ContextMenu = require('secure-electron-context-menu').default;
 
 declare const MAIN_WINDOW_VITE_DEV_SERVER_URL: string;
-declare const MAIN_WINDOW_VITE_NAME: string;
 
 const port = 40992;
 const selfHost = `http://localhost:${port}`;
@@ -57,7 +56,7 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
-      // devTools: isDev,
+      devTools: isDev,
       // allowRunningInsecureContent: false,
       nodeIntegration: false,
       nodeIntegrationInWorker: false,
