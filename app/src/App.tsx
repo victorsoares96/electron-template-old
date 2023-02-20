@@ -1,15 +1,18 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
   const [count, setCount] = useState(0);
 
+  const { t } = useTranslation();
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>Vite + React + TypeScript + Airbnb + Husky = 🔥</p>
+        <p>Vite + React + TypeScript + Electron + i18n = 🔥</p>
+        <p>{t('Hello')}</p>
         <p>
           <button
             className="rainbow-button"
