@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import path from 'path';
+import svgr from 'vite-plugin-svgr';
 
 // https://vitejs.dev/config
 export default defineConfig({
@@ -8,6 +9,7 @@ export default defineConfig({
     hmr: true,
     port: 40992,
   },
+  plugins: [svgr()],
   resolve: {
     alias: {
       '@electron': path.resolve(__dirname, 'app/electron/'),
