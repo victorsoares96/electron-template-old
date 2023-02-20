@@ -2,7 +2,7 @@
   "name": "electron-template",
   "productName": "electron-template",
   "version": "0.0.1",
-  "templateVersion": "0.5.0",
+  "templateVersion": "0.6.0",
   "description": "A electron application template",
   "main": ".vite/build/main.js",
   "scripts": {
