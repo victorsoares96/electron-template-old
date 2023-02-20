@@ -55,6 +55,10 @@
     "import/no-cycle": "off",
     "class-methods-use-this": "off",
     "func-names": "off",
-    "no-restricted-syntax": "warn"
+    "no-restricted-syntax": "warn",
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": ["**/*.spec.ts", "**/*.spec.tsx", "**/*.config.ts"] }
+    ]
   }
 }

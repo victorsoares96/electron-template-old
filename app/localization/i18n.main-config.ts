@@ -1,8 +1,6 @@
 /* eslint-disable import/no-named-as-default-member */
 import i18next from 'i18next';
 import backend from 'i18next-fs-backend';
-import path from 'path';
-import fs from 'fs';
 import { app } from 'electron';
 
 import whitelist from './whitelist';
@@ -20,9 +18,21 @@ i18next
   .use(backend)
   /* .use({
     type: 'logger',
-    log: (args: any) => fs.writeFileSync(path.resolve(process.cwd(), `${app.name}_i18n_log_${Date.now()}.txt`), JSON.stringify(args)),
-    warn: (args: any) => fs.writeFileSync(path.resolve(process.cwd(), `${app.name}_i18n_warn_${Date.now()}.txt`), JSON.stringify(args)),
-    error: (args: any) => fs.writeFileSync(path.resolve(process.cwd(), `${app.name}_i18n_error_${Date.now()}.txt`), JSON.stringify(args))
+    log: (args: any) =>
+      fs.writeFileSync(
+        path.resolve(__dirname, `${app.name}_i18n_log_${Date.now()}.txt`),
+        JSON.stringify(args),
+      ),
+    warn: (args: any) =>
+      fs.writeFileSync(
+        path.resolve(__dirname, `${app.name}_i18n_warn_${Date.now()}.txt`),
+        JSON.stringify(args),
+      ),
+    error: (args: any) =>
+      fs.writeFileSync(
+        path.resolve(__dirname, `${app.name}_i18n_error_${Date.now()}.txt`),
+        JSON.stringify(args),
+      ),
   }) */
   .init({
     backend: {

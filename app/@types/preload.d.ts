@@ -1,4 +1,4 @@
-import { api } from '../electron/preload';
+import { api } from '../electron/preload.old';
 
 declare global {
   // eslint-disable-next-line
