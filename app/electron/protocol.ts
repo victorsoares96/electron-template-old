@@ -14,9 +14,13 @@ Implementing a custom protocol achieves two goals:
 
 import fs from 'fs';
 import path from 'path';
-import electron from 'electron';
 
-const DIST_PATH = path.resolve(__dirname, '../renderer');
+declare const MAIN_WINDOW_VITE_NAME: string;
+
+const DIST_PATH = path.resolve(
+  __dirname,
+  `../renderer/${MAIN_WINDOW_VITE_NAME}`,
+);
 const scheme = 'app';
 
 const mimeTypes: { [key: string]: string } = {
@@ -51,18 +55,20 @@ function requestHandler(
 ) {
   const reqUrl = new URL(req.url);
   let reqPath = path.normalize(reqUrl.pathname);
-
-  if (reqPath === '/index.html') {
-    reqPath = '/main_window/index.html';
-  }
+  let reqFile: string;
 
   const reqFilename = path.basename(reqPath);
 
-  if (reqPath.includes('/.webpack/renderer') && reqPath.includes(reqFilename)) {
-    reqPath = `/main_window/${reqFilename}`;
+  if (reqPath.includes('/usr/lib/') && reqPath.includes(reqFilename)) {
+    const [, newReqPath] = reqPath.split('/app.asar/');
+    reqPath = newReqPath;
+
+    reqFile = path.join(DIST_PATH, '../../../', reqPath);
+  } else {
+    reqFile = path.join(DIST_PATH, reqPath);
   }
 
-  fs.readFile(path.join(DIST_PATH, reqPath), (err, data) => {
+  fs.readFile(reqFile, (err, data) => {
     const { mimeExt, mimeType } = mime(reqFilename);
     if (!err && mimeType !== null) {
       next({
