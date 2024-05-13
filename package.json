@@ -2,11 +2,11 @@
   "name": "vite-electron-builder",
   "description": "Secure boilerplate for Electron app based on Vite",
   "version": "1.0.2",
+  "templateVersion": "0.7.0",
   "private": true,
   "author": {
-    "email": "kozackunisoft@gmail.com",
-    "name": "Alex Kozack",
-    "url": "https://kozack.me"
+    "email": "vitorsoares96@hotmail.com",
+    "name": "Victor Soares"
   },
   "main": "packages/main/dist/index.cjs",
   "scripts": {
@@ -32,7 +32,7 @@
   "devDependencies": {
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
-    "@types/node": "18.19.33",
+    "@types/node": "20.12.11",
     "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "5.62.0",
@@ -45,12 +45,12 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "jsdom": "^21.1.1",
     "nano-staged": "0.8.0",
-    "playwright": "1.32.2",
-    "prettier": "^2.8.7",
+    "playwright": "1.44.0",
+    "prettier": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "simple-git-hooks": "2.8.1",
-    "typescript": "5.0.3",
+    "simple-git-hooks": "2.11.1",
+    "typescript": "5.4.5",
     "unplugin-auto-expose": "0.0.4",
     "vite": "4.2.1",
     "vite-plugin-svgr": "^4.0.0",

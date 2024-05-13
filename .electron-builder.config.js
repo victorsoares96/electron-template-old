@@ -28,16 +28,16 @@ module.exports = async function () {
       target: [
         {
           target: "nsis",
-          arch: ["x64"]
+          arch: ["x64"],
         },
         {
           target: "nsis-web",
-          arch: ["x64"]
-        }
-      ]
+          arch: ["x64"],
+        },
+      ],
     },
     mac: {
-      target: "dmg"
-    }
+      target: "dmg",
+    },
   };
 };
