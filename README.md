@@ -1,11 +1,5 @@
-> [!Important]
-> This project is mainrained by **developer from Ukraine** 🇺🇦
-> 
-> Due to the ongoing war resulting from Russia's full-scale invasion of Ukraine, I currently lack the time for the full development of this open-source project. My primary focus is on ensuring the well-being of myself and my family. I'll prioritize and review all new contributions as soon as possible.
->
-> If you can, please consider [supporting Ukraine](https://stand-with-ukraine.pp.ua/) or [me personally](https://www.buymeacoffee.com/kozack). 
->
-> Thank you for your understanding and support.
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua)
+
 ---
 
 # Vite Electron Builder Boilerplate
@@ -21,15 +15,16 @@ Follow these steps to get started with the template:
 
 1. Click the **[Use this template](https://github.com/cawa-93/vite-electron-builder/generate)** button (you must be
    logged in) or just clone this repo.
-2. If you want to use another package manager you may need to edit [`.github/workflows`](https://github.com/search?q=npm+repo%3Acawa-93%2Fvite-electron-builder+path%3A.github%2Fworkflows&type=Code) since npm is used as default. (See also https://github.com/cawa-93/vite-electron-builder/issues/944)
-   > **Note**:
-   > This template configured to install `peerDependencies` automatically.
-
+2. If you want to use another package manager you may need to edit [`.github/workflows`](/.github/workflows) — [it
+   uses `npm` by default](https://github.com/search?q=npm+repo%3Acawa-93%2Fvite-electron-builder+path%3A.github%2Fworkflows&type=Code&ref=advsearch&l=&l=).
+3. If you like this template, don't forget to give a github star or send support! ⭐♥
 
 That's all you need. 😉
 
-❤️ **If you like this template, don't forget to give a ⭐ or [send support](https://www.buymeacoffee.com/kozack/)!** 
-
+> **Note**:
+> This template uses npm v7 feature — [**Installing Peer Dependencies
+Automatically**](https://github.com/npm/rfcs/blob/latest/implemented/0025-install-peer-deps.md). If you are using a
+different package manager, you may need to install some peerDependencies manually.
 
 ## Features
 
@@ -136,7 +131,7 @@ subgraph Window["Browser Window"]
     subgraph packages/renderer
     R[index.html] --> W[Web API]
     R --> BD[Bundled dependencies]
-    R --> F[Web Frameworks]
+    R --> F[Web Frameforks]
     end
     end
 
