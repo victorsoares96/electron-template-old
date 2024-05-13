@@ -20,10 +20,24 @@ module.exports = async function () {
     extraMetadata: {
       version: getVersion(),
     },
-
     // Specify linux target just for disabling snap compilation
     linux: {
       target: "deb",
     },
+    win: {
+      target: [
+        {
+          target: "nsis",
+          arch: ["x64"]
+        },
+        {
+          target: "nsis-web",
+          arch: ["x64"]
+        }
+      ]
+    },
+    mac: {
+      target: "dmg"
+    }
   };
 };
